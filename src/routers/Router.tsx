@@ -13,7 +13,7 @@ import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
 
 import Home from "../pages/B_body/Home.tsx";
 
-const   Router = ({isLogged}: { isLogged: boolean }) => {
+const Router = ({isLogged}: { isLogged: boolean }) => {
 
     return (
         <>

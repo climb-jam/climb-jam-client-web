@@ -1,9 +1,11 @@
+import Pages from "../../components/layout/Pages";
+
 const Index = ({}) => {
 
     return (
-        <div>
+        <Pages title={"index"}>
             <h1>My index</h1>
-        </div>
+        </Pages>
     );
 };
 

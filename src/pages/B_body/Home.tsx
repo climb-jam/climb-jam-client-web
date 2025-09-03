@@ -1,6 +1,7 @@
 import Pages from "../../components/layout/Pages";
 import {useContext} from "react";
-import {LogInContext} from "../../App.tsx";
+
+import {LogInContext} from "../../LogInContext.tsx";
 
 
 
