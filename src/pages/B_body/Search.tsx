@@ -1,10 +1,25 @@
-const Search = ({}) => {
+import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
+
+
+const Search = () => {
 
     return (
-        <div>
-            <h1>my search</h1>
-        </div>
+        <>
+
+            <MapContainer style={{height: "180px"}} center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={[51.505, -0.09]}>
+                    <Popup>
+                        A pretty CSS3 popup. <br/> Easily customizable.
+                    </Popup>
+                </Marker>
+            </MapContainer>
+        </>
     );
+
 };
 
 export default Search;
