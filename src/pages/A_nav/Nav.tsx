@@ -24,10 +24,10 @@ const Nav = () => {
 
     return (
         <Paper
-            sx={{position: "fixed", bottom: 0, left: 0, right: 0}}
+            sx={{position: "fixed", bottom: 0, left: 0, right: 0, zIndex:200}}
             elevation={3}
         >
-        <BottomNavigation  sx={{width: "100%", margin: "auto",padding:0}} value={value} onChange={handleChange} >
+        <BottomNavigation  sx={{width: "100%", margin: "auto",padding:0 ,zIndex: 200}} value={value} onChange={handleChange} >
             {
                 menu.map((page, index) => (
                     <BottomNavigationAction

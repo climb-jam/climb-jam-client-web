@@ -1,9 +1,13 @@
+import Pages from "../../components/layout/Pages";
+
 const Social = ({}) => {
 
     return (
-        <div>
-            <h1>My social</h1>
-        </div>
+        <Pages title={"Social"}>
+            <div>
+                <h1>My social</h1>
+            </div>
+        </Pages>
     );
 };
 
