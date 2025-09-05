@@ -14,7 +14,7 @@ const TextInputControl = ({}) => {
             const input = L.DomUtil.create("input", "", div);
 
             input.type = "text";
-            input.placeholder = "Type here...";
+            input.placeholder = "Spot ou voie...";
             input.style.padding = "5px";
 
             // Prevent map from dragging while typing
