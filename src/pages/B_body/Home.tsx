@@ -10,6 +10,7 @@ const Home = () => {
     return (
         <>
             <Pages title={"home"}>
+
                 <button onClick={() => setIsLogged(true)}>Log in</button>
             </Pages>
         </>

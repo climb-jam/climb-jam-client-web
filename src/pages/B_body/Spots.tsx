@@ -1,9 +1,13 @@
+import Pages from "../../components/layout/Pages";
+
 const Spots = ({}) => {
 
     return (
-        <div>
+        <Pages title={"Spots"}>
+            <div>
             <h1>My spots</h1>
         </div>
+        </Pages>
     );
 };
 

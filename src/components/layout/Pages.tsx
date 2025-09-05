@@ -10,7 +10,7 @@ const Pages = ({children, title}: PageProps) => {
 
     return (
 
-        <Box  mb="0px">
+        <Box  margin={"0px"}>
             <title>{title}</title>
             {children}
         </Box>

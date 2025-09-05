@@ -12,7 +12,7 @@ const App = () => {
         palette: {
             primary: {
                 light: '#FDFFEB',
-                main: '#00CAED',
+                main: '#12C905',
                 dark: '#000000',
                 contrastText: '#000000',
             },
