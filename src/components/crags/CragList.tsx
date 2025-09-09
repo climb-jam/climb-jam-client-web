@@ -15,11 +15,14 @@ const CragList = () => {
 
     return (
         <div>
+
             {crags.map((crag) => {
                 return (
-
-                        <p>{crag.lat}</p>
-
+                    <>
+                        <p>{crag.city}{crag.name}{crag.postalCode}</p>
+                        <p>lat: {crag.lat}</p>
+                        <p>long: {crag.lon}</p>
+                    </>
                 )
             })}
         </div>
