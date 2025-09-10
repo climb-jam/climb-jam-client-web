@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import type {Crag} from "../../@types/crag.type.ts";
-import {fetchCrags} from "../CragList.ts";
+import {fetchCrags} from "../../api/crag-api.ts";
 
 const CragList = () => {
 

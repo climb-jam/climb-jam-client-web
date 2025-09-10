@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import TextInputControl from "../../components/map/TextInputControl.tsx";
 import Pages from '../../components/layout/Pages.tsx';
 import type {Crag} from "../../@types/crag.type.ts";
-import {fetchCrags} from "../../components/CragList.ts";
+import {fetchCrags} from "../../api/crag-api.ts";
 
 
 
@@ -45,9 +45,13 @@ const Search = () => {
                             <div key={index}>
                                 <Marker position={[latitude, longitude]}>
                                     <Popup>
-                                        <p>{crag.city},{crag.postalCode},{crag.name}</p>
-                                        <p>lat: {crag.lat},long: {crag.lon}</p>
+
+
+                                        <p>{crag.city}, {crag.postalCode}, {crag.name}</p>
+                                        <p>lat: {crag.lat}, long: {crag.lon}</p>
                                         <p>cotation: {crag.minGrade}-{crag.maxGrade}</p>
+
+
                                     </Popup>
                                 </Marker>
                             </div>
