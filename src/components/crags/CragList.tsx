@@ -20,7 +20,7 @@ const CragList = () => {
             {crags.map((crag) => {
                 return (
                     <>
-                        <p>{crag.city}{crag.name}{crag.postalCode}</p>
+                        <p>{crag.city}, {crag.postalCode}</p>
                         <p>lat: {crag.lat}</p>
                         <p>long: {crag.lon}</p>
                         <Link to={`/crags/${crag.id}`}>{crag.name}</Link>

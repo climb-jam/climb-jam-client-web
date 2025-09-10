@@ -2,9 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Stats from "./Stats.tsx";
-import Spots from "./Spots.tsx";
-import Ascents from "./Ascents.tsx";
+import RouteList from "../routes/RouteList.tsx";
+import CragDetails from "./CragDetails.tsx";
 
 function samePageLinkNavigation(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -43,9 +42,10 @@ function LinkTab(props: LinkTabProps) {
         />
     );
 }
+
 // Stats, Croix, Spots
 
-const Index = ({}) => {
+const CragTab = () => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -66,19 +66,17 @@ const Index = ({}) => {
             <Tabs
                 value={value}
                 onChange={handleChange}
-                aria-label="nav tabs of the profile"
+                aria-label="nav tabs of crags and routes"
                 role="navigation"
             >
-                <LinkTab label="Stats" href="/stats"/>
-                <LinkTab label="Croix" href="/croix"/>
-                <LinkTab label="Spots" href="/spots"/>
+                <LinkTab label="Le spot" href="/crags/:id"/>
+                <LinkTab label="Les lignes" href="/crags/:id/route-list"/>
             </Tabs>
             {/* Contenu des onglets */}
-            {value === 0 && <Stats/>}
-            {value === 1 && <Ascents/>}
-            {value === 2 && <Spots/>}
+            {value === 0 && <CragDetails/>}
+            {value === 1 && <RouteList/>}
         </Box>
     );
 };
 
-export default Index;
+export default CragTab;
