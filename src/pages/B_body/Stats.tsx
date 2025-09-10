@@ -6,6 +6,8 @@ const Stats = ({}) => {
         <Pages title={"Statistiques"}>
         <div>
             <h1>My stats</h1>
+
+
         </div>
         </Pages>
     );
