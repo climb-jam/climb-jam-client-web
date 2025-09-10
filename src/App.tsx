@@ -4,6 +4,9 @@ import {CssBaseline, ThemeProvider} from "@mui/material";
 import Router from "./routers/Router.tsx";
 import {createTheme} from '@mui/material/styles';
 import {LogInContext} from "./LogInContext.tsx";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {UserProvider} from "./context/UseAuth.tsx";
 
 const App = () => {
 
@@ -27,12 +30,15 @@ const App = () => {
 
     return (
         <>
+            <UserProvider>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <LogInContext value={{isLogged, setIsLogged}}>
                     <Router isLogged={isLogged}/>
                 </LogInContext>
+                <ToastContainer/>
             </ThemeProvider>
+            </UserProvider>
         </>
     )
 }
