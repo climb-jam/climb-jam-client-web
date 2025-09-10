@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCrags} from "../../api/crag-api.ts";
+import { Link } from "react-router";
 
 const CragList = () => {
 
@@ -22,6 +23,7 @@ const CragList = () => {
                         <p>{crag.city}{crag.name}{crag.postalCode}</p>
                         <p>lat: {crag.lat}</p>
                         <p>long: {crag.lon}</p>
+                        <Link to={`/crags/${crag.id}`}>{crag.name}</Link>
                     </>
                 )
             })}
