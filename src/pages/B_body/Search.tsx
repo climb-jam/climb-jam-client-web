@@ -74,7 +74,6 @@ const Search = () => {
                                 <Marker position={[latitude, longitude]}>
                                     <Popup>
                                         <MapPopupCard crag={crag}/>
-
                                     </Popup>
                                 </Marker>
                             </div>

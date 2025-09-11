@@ -33,21 +33,21 @@ const CragList = () => {
         }
     })
     return (
-        <div>
-            <div className="search">
+        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center" }}>
+            <div style={{ width: "100%" }}>
                 <TextField
                     id="outlined-basic"
                     onChange={inputHandler}
                     variant="outlined"
                     fullWidth
                     label="Search"
+
                 />
             </div>
             {filteredCrags.map((crag: Crag, idx: number) => {
                 return (
                     <>
                         <CragCard crag={crag} key={idx}/>
-                        <Link to={`/crags/${crag.id}`}>{crag.name}</Link>
                     </>
                 )
             })}
