@@ -4,6 +4,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import RouteList from "../routes/RouteList.tsx";
 import CragDetails from "./CragDetails.tsx";
+import {useParams} from "react-router";
+import {useEffect, useState} from "react";
+import type {Crag} from "../../@types/crag.type.ts";
+import {fetchCragById} from "../../api/crag-api.ts";
 
 function samePageLinkNavigation(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -46,6 +50,17 @@ function LinkTab(props: LinkTabProps) {
 // Stats, Croix, Spots
 
 const CragTab = () => {
+    const {id} = useParams();
+    const [crag, setCrag] = useState<Crag>({} as Crag)
+
+    useEffect(() => {
+        if (id) {
+            fetchCragById(id)
+                .then((crag: Crag) => {
+                    setCrag(crag);
+                })
+        }
+    }, [id]);
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -69,14 +84,18 @@ const CragTab = () => {
                 aria-label="nav tabs of crags and routes"
                 role="navigation"
             >
-                <LinkTab label="Le spot" href="/crags/:id"/>
-                <LinkTab label="Les lignes" href="/crags/:id/route-list"/>
+                <LinkTab label={crag.name} href={`/crags/${crag.id}`}/>
+                <LinkTab label="Les lignes" href={`/crags/${crag.id}/route-list`}/>
             </Tabs>
             {/* Contenu des onglets */}
-            {value === 0 && <CragDetails/>}
+            {value === 0 && <CragDetails cragProps={crag} />}
             {value === 1 && <RouteList/>}
         </Box>
     );
 };
 
 export default CragTab;
+{/*id={crag.id} name={crag.name} city={crag.city} postalCode={crag.postalCode} lat={crag.lat} lon={crag.lon}
+                                         altitude={crag.altitude} rockType={crag.rockType} minGrade={crag.minGrade} maxGrade={crag.maxGrade} exposure={crag.exposure}
+                                         favorableSeasons={crag.favorableSeasons} orientation={crag.orientation} photoUrl={crag.photoUrl} thumbnailUrl={crag.thumbnailUrl}*/
+}

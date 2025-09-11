@@ -1,29 +1,32 @@
-import {useEffect, useState} from "react";
 import Pages from "../../components/layout/Pages";
-import {useParams} from "react-router";
 import type {Crag} from "../../@types/crag.type.ts";
-import {fetchCragById} from "../../api/crag-api.ts";
 
-const CragDetails = () => {
-    const {id} = useParams();
-    const [crag, setCrag] = useState<Crag>({} as Crag)
+type CragDetailsProps = {
+    cragProps: Crag;
+}
 
-    useEffect(() => {
-        if (id) {
-            fetchCragById(id)
-                .then((crag: Crag) => {
-                    setCrag(crag);
-                })
-        }
-    }, [id]);
+const CragDetails= ({cragProps}: CragDetailsProps) => {
 
 
     return (
-        <Pages title={"Le spot"}>
-            <p>{id}</p>
-            <p>{crag.name}</p>
-            {/*<CragCard crag={crag}/>
-            <CragList crag={crag}/>*/}
+        <Pages title={cragProps.name}>
+
+            <p>{cragProps.city}, {cragProps.postalCode}</p>
+            <p>Longitude et latitude: {cragProps.lat}, {cragProps.lon}</p>
+            <p>Cotation: {cragProps.minGrade} à {cragProps.maxGrade}</p>
+            <p>Hauteur: {cragProps.altitude} mètres</p>
+            <p>Exposition: {cragProps.exposure}</p>
+            <p>Saison favorable: {cragProps.favorableSeasons+" "}</p>
+            {/*<ul>
+                {
+                    cragProps.favorableSeasons.map((season,idx) => {
+                        return (<li key={idx}>{season}</li>)
+                    })
+                }
+            </ul>*/}
+            <p>Type de roche: {cragProps.rockType}</p>
+
+
         </Pages>
     );
 };

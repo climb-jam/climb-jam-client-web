@@ -2,7 +2,7 @@ const RouteList = ({}) => {
 
     return (
         <div>
-            <p>Les lignes du secteur</p>
+            <p>Les lignes du spots</p>
         </div>
     );
 };
