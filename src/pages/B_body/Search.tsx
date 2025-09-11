@@ -9,7 +9,8 @@ import {fetchCrags} from "../../api/crag-api.ts";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 import {Button, TextField} from "@mui/material";
-import thumbnailPopup from "../../assets/mountain_thumbnail.png"
+import MapPopupCard from "../../components/map/MapPopupCard.tsx";
+
 
 const Search = () => {
     const [map, setMap] = useState(null)
@@ -72,13 +73,8 @@ const Search = () => {
                             <div key={index}>
                                 <Marker position={[latitude, longitude]}>
                                     <Popup>
-                                        <div >
-                                            <img src={thumbnailPopup} alt="oui"/>
-                                            <p>{crag.name}</p>
-                                            <p>{crag.city}, {crag.postalCode}</p>
-                                            <p>cotation: {crag.minGrade}-{crag.maxGrade}</p>
-                                            <button style={{marginLeft :"110px", left:"0"}} onClick={() => navigate(`/crags/${crag.id}`)}>Details...</button>
-                                        </div>
+                                        <MapPopupCard crag={crag}/>
+
                                     </Popup>
                                 </Marker>
                             </div>
