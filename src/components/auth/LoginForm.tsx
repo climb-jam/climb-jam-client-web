@@ -5,8 +5,6 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import "./LoginForm.css";
 import logo from "../../assets/logoFull.png";
 
-type Props = {};
-
 type LoginFormInputs = {
     email: string,
     password: string,
@@ -17,7 +15,7 @@ const validation = Yup.object().shape({
     password: Yup.string().required("Le mot de passe est obligatoire").min(8, "Minimum 8 caractères"),
 });
 
-const LoginForm = (props: Props) => {
+const LoginForm = () => {
     const { loginUser } = AuthContext();
     const {register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
 

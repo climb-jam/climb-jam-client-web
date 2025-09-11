@@ -1,7 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 import type {UserProfile} from "../@types/user.type.ts";
 import {useNavigate} from "react-router";
-import {loginAPI, registerAPI} from "../api/authService.ts";
+import {getProfileAPI, loginAPI, registerAPI} from "../api/authService.ts";
 import {toast} from "react-toastify";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ type UserContextType = {
     loginUser: (email: string, password: string) => void;
     logout: () => void;
     isLoggedIn: () => boolean;
+    isReady: boolean;
 }
 
 type Props = { children: React.ReactNode };
@@ -39,31 +40,12 @@ export const UserProvider = ({ children }: Props) => {
     const registerUser = async (email: string, password: string, username: string) => {
         await registerAPI(email, password, username)
             .then((res) => {
-            if (res) {
-                localStorage.setItem("token", res?.data.token);
-                const userObject = {
-                    email: res?.data.email,
-                    username: res?.data.username
-                }
-                localStorage.setItem("user", JSON.stringify(userObject));
-                setToken(res?.data.token!);
-                setUser(userObject!);
-                toast.success("Connexion réussie !");
-                navigate("/home");
-            }
-        })
-            .catch((e) => toast.warning("Erreur serveur."));
-    };
-
-    const loginUser = async (email: string, password: string) => {
-        await loginAPI(email, password)
-            .then((res) => {
                 if (res) {
                     localStorage.setItem("token", res?.data.token);
                     const userObject = {
                         email: res?.data.email,
-                        username: res?.data.username
-                    }
+                        username: res?.data.username,
+                    };
                     localStorage.setItem("user", JSON.stringify(userObject));
                     setToken(res?.data.token!);
                     setUser(userObject!);
@@ -72,6 +54,33 @@ export const UserProvider = ({ children }: Props) => {
                 }
             })
             .catch((e) => toast.warning("Erreur serveur."));
+    };
+
+    const loginUser = async (email: string, password: string) => {
+        try {
+            const res = await loginAPI(email, password);
+
+            const token = res?.data.token;
+            if (!token) throw new Error("Token manquant");
+
+            // Stockage + configuration axios
+            localStorage.setItem("token", token);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+            // Récupération du profil utilisateur
+            const profileRes = await getProfileAPI();
+            const userObject = profileRes.data;
+
+            localStorage.setItem("user", JSON.stringify(userObject));
+            setToken(token);
+            setUser(userObject);
+
+            toast.success("Connexion réussie !");
+            navigate("/home");
+        } catch (error) {
+            console.error(error);
+            toast.error("Erreur lors de la connexion");
+        }
     };
 
     const isLoggedIn = () => {
@@ -85,8 +94,8 @@ export const UserProvider = ({ children }: Props) => {
         navigate("/");
     }
     return (
-        <UserContext.Provider value={{ registerUser, loginUser, user, token, logout, isLoggedIn}}>
-            {isReady ? children : null}
+        <UserContext.Provider value={{ registerUser, loginUser, user, token, logout, isLoggedIn, isReady }}>
+            {children}
         </UserContext.Provider>
     );
 };

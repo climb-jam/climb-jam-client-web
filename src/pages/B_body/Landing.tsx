@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 
 
-const Home = () => {
+const Landing = () => {
     const navigate = useNavigate();
 
     return (
@@ -55,4 +55,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Landing;

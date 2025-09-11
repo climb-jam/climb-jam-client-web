@@ -5,8 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./LoginForm.css";
 import logo from "../../assets/logoFull.png";
 
-type Props = {};
-
 type RegisterFormInputs = {
     email: string;
     password: string;
@@ -14,18 +12,14 @@ type RegisterFormInputs = {
 };
 
 const validation = Yup.object().shape({
-    email: Yup.string()
-        .required("L'email est obligatoire")
-        .email("Email invalide"),
-    password: Yup.string()
-        .required("Le mot de passe est obligatoire")
-        .min(6, "Minimum 6 caractères"),
+    email: Yup.string().required("L'email est obligatoire").email("Email invalide"),
+    password: Yup.string().required("Le mot de passe est obligatoire").min(8, "Minimum 8 caractères"),
     username: Yup.string()
         .required("Le nom d'utilisateur est obligatoire")
         .min(3, "Minimum 3 caractères"),
 });
 
-const RegisterForm = (props: Props) => {
+const RegisterForm = () => {
     const { registerUser } = AuthContext();
 
     const {

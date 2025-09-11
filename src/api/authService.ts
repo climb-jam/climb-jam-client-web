@@ -28,3 +28,7 @@ export const loginAPI = async (email: string, password: string) => {
         handleError(error);
     }
 };
+
+export const getProfileAPI = async () => {
+    return await axios.get("/api/profiles/me");
+};

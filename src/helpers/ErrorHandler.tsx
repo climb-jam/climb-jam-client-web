@@ -2,9 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 /**
- * ErrorHandler pour Axios
- * @param error L'erreur Axios ou autre
- * @param navigate Fonction de navigation (optionnelle)
+ * @param error
+ * @param navigate
  */
 export const handleError = (error: any, navigate?: (path: string) => void) => {
     if (axios.isAxiosError(error)) {

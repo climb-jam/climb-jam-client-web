@@ -12,7 +12,7 @@ import Error from "../pages/B_body/Error.tsx";
 import LayoutWithNav from "../layout/LayoutWithNav.tsx";
 
 import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
-import Home from "../pages/B_body/Home.tsx";
+import Landing from "../pages/B_body/Landing.tsx";
 import Register from "../pages/B_body/Register.tsx";
 import Login from "../pages/B_body/Login.tsx";
 
@@ -36,7 +36,7 @@ const Router = () => {
                     </Route>
                     ) : (
                     <Route path="/" element={<LayoutWithoutNav/>}>
-                        <Route path="/" element={<Home/>}/>
+                        <Route path="/" element={<Landing/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="*" element={<Navigate to="/"/>}/>
