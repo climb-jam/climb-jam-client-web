@@ -2,18 +2,19 @@ import {Navigate, Route, Routes} from "react-router";
 import {AuthContext} from "../context/AuthContext.tsx";
 
 import Index from "../pages/B_body/Index.tsx";
-import Login from "../pages/B_body/Login.tsx";
 import Search from "../pages/B_body/Search.tsx";
 import Settings from "../pages/B_body/Settings.tsx";
 import Social from "../pages/B_body/Social.tsx";
 import Spots from "../pages/B_body/Spots.tsx";
 import Stats from "../pages/B_body/Stats.tsx";
+import CragList from "../components/crags/CragList.tsx";
 import Error from "../pages/B_body/Error.tsx";
 import LayoutWithNav from "../layout/LayoutWithNav.tsx";
 
 import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
 import Home from "../pages/B_body/Home.tsx";
-import CragList from "../components/crags/CragList.tsx";
+import Register from "../pages/B_body/Register.tsx";
+import Login from "../pages/B_body/Login.tsx";
 
 const Router = () => {
     const { isLoggedIn } = AuthContext();
@@ -24,7 +25,7 @@ const Router = () => {
             <Routes>
                 {isLogged ? (
                     <Route path="/" element={<LayoutWithNav/>}>
-                        <Route path="/" element={<Index/>}/>
+                        <Route path="/home" element={<Index/>}/>
                         <Route path="/search" element={<Search/>}/>
                         <Route path="/settings" element={<Settings/>}/>
                         <Route path="/social" element={<Social/>}/>
@@ -32,12 +33,11 @@ const Router = () => {
                         <Route path="/stats" element={<Stats/>}/>
                         <Route path="/crags" element={<CragList/>}/>
                         <Route path="*" element={<Error/>}/>
-
-                        <Route path="/login" element={<Login/>}/>
                     </Route>
                     ) : (
                     <Route path="/" element={<LayoutWithoutNav/>}>
                         <Route path="/" element={<Home/>}/>
+                        <Route path="/register" element={<Register/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="*" element={<Navigate to="/"/>}/>
                     </Route>

@@ -1,29 +1,45 @@
 import * as Yup from "yup";
-import {AuthContext} from "../../context/AuthContext.tsx";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { AuthContext } from "../../context/AuthContext.tsx";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import "./LoginForm.css";
 import logo from "../../assets/logoFull.png";
 
 type Props = {};
 
-type LoginFormInputs = {
-    email: string,
-    password: string,
-}
+type RegisterFormInputs = {
+    email: string;
+    password: string;
+    username: string;
+};
 
 const validation = Yup.object().shape({
-    email: Yup.string().required("L'email est obligatoire").email("Email invalide"),
-    password: Yup.string().required("Le mot de passe est obligatoire").min(8, "Minimum 8 caractères"),
+    email: Yup.string()
+        .required("L'email est obligatoire")
+        .email("Email invalide"),
+    password: Yup.string()
+        .required("Le mot de passe est obligatoire")
+        .min(6, "Minimum 6 caractères"),
+    username: Yup.string()
+        .required("Le nom d'utilisateur est obligatoire")
+        .min(3, "Minimum 3 caractères"),
 });
 
-const LoginForm = (props: Props) => {
-    const { loginUser } = AuthContext();
-    const {register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
+const RegisterForm = (props: Props) => {
+    const { registerUser } = AuthContext();
 
-    const handleLogin = (form: LoginFormInputs) => {
-        loginUser(form.email, form.password);
-    }
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<RegisterFormInputs>({
+        resolver: yupResolver(validation),
+    });
+
+    const handleRegister = (form: RegisterFormInputs) => {
+        registerUser(form.email, form.password, form.username);
+    };
+
     return (
         <section className="login-section">
             <div className="login-container">
@@ -32,11 +48,12 @@ const LoginForm = (props: Props) => {
                     <img src={logo} alt="ClimbJAM" />
                 </div>
 
-                {/* Form container */}
+                {/* Card */}
                 <div className="login-card">
-                    <h1 className="login-title">Connexion</h1>
+                    <h1 className="login-title">Créer un compte</h1>
 
-                    <form onSubmit={handleSubmit(handleLogin)} className="login-form">
+                    <form onSubmit={handleSubmit(handleRegister)} className="login-form">
+
                         {/* Email */}
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
@@ -65,23 +82,30 @@ const LoginForm = (props: Props) => {
                             )}
                         </div>
 
-                        {/* Options */}
-                        <div className="form-options">
-                            <a href="#" className="forgot-password">
-                                {/*Mot de passe oublié ?*/}
-                            </a>
+                        {/* Username */}
+                        <div className="form-group">
+                            <label htmlFor="username">Nom d'utilisateur</label>
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Nom d'utilisateur"
+                                {...register("username")}
+                            />
+                            {errors.username && (
+                                <p className="error-message">{errors.username.message}</p>
+                            )}
                         </div>
 
                         {/* Button */}
                         <button type="submit" className="btn-submit">
-                            Se connecter
+                            S'inscrire
                         </button>
 
                         {/* Footer */}
                         <p className="signup-text">
-                            Pas encore de compte ?{" "}
-                            <a href="/register" className="signup-link">
-                                S'inscrire
+                            Déjà un compte ?{" "}
+                            <a href="/login" className="signup-link">
+                                Se connecter
                             </a>
                         </p>
                     </form>
@@ -91,4 +115,4 @@ const LoginForm = (props: Props) => {
     );
 };
 
-export default LoginForm;
+export default RegisterForm;

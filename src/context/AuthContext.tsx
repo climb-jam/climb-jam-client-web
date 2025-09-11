@@ -48,8 +48,8 @@ export const UserProvider = ({ children }: Props) => {
                 localStorage.setItem("user", JSON.stringify(userObject));
                 setToken(res?.data.token!);
                 setUser(userObject!);
-                toast.success("Inscription réussie !");
-                navigate("/login");
+                toast.success("Connexion réussie !");
+                navigate("/home");
             }
         })
             .catch((e) => toast.warning("Erreur serveur."));
@@ -68,7 +68,7 @@ export const UserProvider = ({ children }: Props) => {
                     setToken(res?.data.token!);
                     setUser(userObject!);
                     toast.success("Connexion réussie !");
-                    navigate("/search");
+                    navigate("/home");
                 }
             })
             .catch((e) => toast.warning("Erreur serveur."));
