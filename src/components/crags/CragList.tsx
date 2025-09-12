@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCrags} from "../../api/crag-api.ts";
+import CragCard from "./CragCard.tsx";
+import {Link} from "react-router-dom";
+import {TextField} from "@mui/material";
 
 const CragList = () => {
 
@@ -13,15 +16,38 @@ const CragList = () => {
             })
     }, [])
 
+    const [inputText, setInputText] = useState("");
+    const inputHandler = (e) => {
+        //convert input text to lower case
+        const lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+    const filteredCrags = crags.filter((el) => {
+        //if no input the return the original
+        if (inputText === '') {
+            return el;
+        }
+        //return the item which contains the user input
+        else {
+            return el.name.toLowerCase().includes(inputText) || el.city.toLowerCase().includes(inputText)
+        }
+    })
     return (
-        <div>
+        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center" }}>
+            <div style={{ width: "100%" }}>
+                <TextField
+                    id="outlined-basic"
+                    onChange={inputHandler}
+                    variant="outlined"
+                    fullWidth
+                    label="Search"
 
-            {crags.map((crag) => {
+                />
+            </div>
+            {filteredCrags.map((crag: Crag, idx: number) => {
                 return (
                     <>
-                        <p>{crag.city}{crag.name}{crag.postalCode}</p>
-                        <p>lat: {crag.lat}</p>
-                        <p>long: {crag.lon}</p>
+                        <CragCard crag={crag} key={idx}/>
                     </>
                 )
             })}
