@@ -4,9 +4,9 @@ import {AuthContext} from "../../context/AuthContext.tsx";
 import type {UserStats} from "../../@types/userStats.type.ts";
 import {Card, CardContent, Container, Grid, Typography} from "@mui/material";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement} from "chart.js";
-import {Bar, Doughnut} from "react-chartjs-2";
 import axios from "axios";
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
+import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -19,13 +19,13 @@ const Stats = () => {
         if (user) {
             axios
                 .get<UserStats>(`http://localhost:8080/users/${user.id}/stats`)
-                .then((res) => setStats(res.data))
-                .catch((err) => console.error(err));
+                .then((response) => setStats(response.data))
+                .catch((error) => console.error(error));
         }
     }, [user]);
 
     if (!user) {
-        return <Typography>Veuillez vous connecter pour voir vos statistiques.</Typography>;
+        return <Typography>Connecte-toi pour voir tes statistiques.</Typography>;
     }
 
     if (!stats) return <p>Chargement...</p>;
@@ -33,110 +33,62 @@ const Stats = () => {
     return (
         <Pages title={"Statistiques"}>
 
-            <p>Mes Stats</p>
-
             <Container maxWidth="lg" sx={{mt: 4}}>
                 <Typography variant="h4" gutterBottom>
-                    Statistiques
+                    Mes Statistiques
                 </Typography>
 
-                {/* Stats générales */}
-                {/*<Grid container spacing={3} sx={{mb: 3}}>*/}
-                {/*    <Grid item xs={12} md={3}>*/}
-                {/*        <Card>*/}
-                {/*            <CardContent>*/}
-                {/*                <Typography variant="h6">Total Sessions</Typography>*/}
-                {/*                <Typography variant="h4">{stats.totalSessions}</Typography>*/}
-                {/*            </CardContent>*/}
-                {/*        </Card>*/}
-                {/*    </Grid>*/}
+                {/* GENERAL STATS */}
+                <Grid container spacing={3} sx={{mb: 3}}>
+                    <Grid item xs={12} md={3}>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h6">Total Sessions</Typography>
+                                <Typography variant="h4">{stats.totalSessions}</Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                {/*    <Grid item xs={12} md={3}>*/}
-                {/*        <Card>*/}
-                {/*            <CardContent>*/}
-                {/*                <Typography variant="h6">Total Ascensions</Typography>*/}
-                {/*                <Typography variant="h4">{stats.totalAscents}</Typography>*/}
-                {/*            </CardContent>*/}
-                {/*        </Card>*/}
-                {/*    </Grid>*/}
+                    <Grid item xs={12} md={3}>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h6">Total Ascensions</Typography>
+                                <Typography variant="h4">{stats.totalAscents}</Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                {/*    <Grid item xs={12} md={3}>*/}
-                {/*        <Card>*/}
-                {/*            <CardContent>*/}
-                {/*                <Typography variant="h6">Mètres Grimpés</Typography>*/}
-                {/*                <Typography variant="h4">{stats.totalMetersClimbed} m</Typography>*/}
-                {/*            </CardContent>*/}
-                {/*        </Card>*/}
-                {/*    </Grid>*/}
+                    <Grid item xs={12} md={3}>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h6">Mètres Grimpés</Typography>
+                                <Typography variant="h4">{stats.totalMetersClimbed} m</Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                {/*    /!* Graphiques *!/*/}
-                {/*    <Grid item xs={12} md={6}>*/}
-                {/*        <Card>*/}
-                {/*            <CardContent>*/}
-                {/*                <AscentsByClimbingTypeChart ascentsByClimbingType={stats.ascentsByClimbingType}/>*/}
-                {/*            </CardContent>*/}
-                {/*        </Card>*/}
-                {/*    </Grid>*/}
+                    {/* GRAPHS */}
+                    <Grid container spacing={3}>
+                    <Grid item xs={12} md={6}>
+                        <Card>
+                            <CardContent>
+                                <AscentsByClimbingTypeChart ascentsByClimbingType={stats.ascentsByClimbingType}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                {/*    <Grid container spacing={3}>*/}
-                {/*        <Grid item xs={12} md={6}>*/}
-                {/*            <Card>*/}
-                {/*                <CardContent>*/}
-                {/*                    <AscentsByGradeChart ascentsByGrade={stats.ascentsByGrade}/>*/}
-                {/*                </CardContent>*/}
-                {/*            </Card>*/}
-                {/*        </Grid>*/}
-                {/*    </Grid>*/}
-                {/*</Grid>*/}
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6}>
+                            <Card>
+                                <CardContent>
+                                    <AscentsByGradeChart ascentsByGrade={stats.ascentsByGrade}/>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                </Grid>
             </Container>
-
-
-            <Grid container spacing={3}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6">Résumé</Typography>
-                        <p>Total sessions : {stats.totalSessions}</p>
-                        <p>Total ascents : {stats.totalAscents}</p>
-                        <p>Mètres grimpés : {stats.totalMetersClimbed} m</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6">Répartition par type de grimpe</Typography>
-                        <Doughnut
-                            data={{
-                                labels: Object.keys(stats.ascentsByClimbingType),
-                                datasets: [
-                                    {
-                                        data: Object.values(stats.ascentsByClimbingType),
-                                        backgroundColor: ["#1976d2", "#ff9800", "#4caf50", "#e91e63", "#9c27b0", "#ffc107"],
-                                    },
-                                ],
-                            }}
-                        />
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6">Répartition par type de grimpe</Typography>
-                        <Doughnut
-                            data={{
-                                labels: Object.keys(stats.ascentsByClimbingType),
-                                datasets: [
-                                    {
-                                        data: Object.values(stats.ascentsByClimbingType),
-                                        backgroundColor: ["#1976d2", "#ff9800", "#4caf50",
-                                            "#e91e63", "#9c27b0", "#ffc107"],
-                                    },
-                                ],
-                            }}
-                        />
-                    </CardContent>
-                </Card>
-
-            </Grid>
         </Pages>
     );
 };

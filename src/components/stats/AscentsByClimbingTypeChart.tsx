@@ -1,44 +1,38 @@
 import React from 'react';
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import type {UserStats} from "../../@types/userStats.type.ts";
+import {Typography} from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 type Props = {
-    userStats: UserStats;
+    ascentsByClimbingType: Record<string, number>;
 }
 
-const colors = [
-    "#FF6384",
-    "#36A2EB",
-    "#FFCE56",
-    "#4BC0C0",
-    "#9966FF",
-    "#FF9F40"
-];
 
-const AscentsByClimbingTypeChart: React.FC<Props> = ({ userStats }) => {
 
-    const  { ascentsByClimbingType } = userStats
-
-    const labels = Object.keys(ascentsByClimbingType);
-    const data = Object.values(ascentsByClimbingType);
+const AscentsByClimbingTypeChart: React.FC<Props> = ({ ascentsByClimbingType }) => {
 
     const chartData = {
-        labels,
+        labels: Object.keys(ascentsByClimbingType),
         datasets: [
             {
-                label: "Ascensions par type de grimpe",
-                data,
-                backgroundColor: colors.slice(0, labels.length),
-                borderWidth: 1,
+                label: "nombre ",
+                data: Object.values(ascentsByClimbingType),
+                backgroundColor: [
+                    "#FF6384", "#36A2EB", "#FFCE56",
+                    "#4BC0C0", "#9966FF", "#FF9F40"],
+                hoverOffset: 4
+
             },
         ],
     };
 
     return (
-        <Doughnut data={chartData} />
+        <>
+            <Typography variant="h6">Type d'escalade</Typography>
+            <Doughnut data={chartData} />
+        </>
     );
 };
 
