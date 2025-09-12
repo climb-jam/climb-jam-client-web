@@ -10,7 +10,7 @@ export type Crag = {
     minGrade: string,
     maxGrade: string,
     exposure: number,
-    favorableSeasons: string[],
+    favorableSeasons?: string[],
     orientation: string[],
     photoUrl: string,
     thumbnailUrl: string,

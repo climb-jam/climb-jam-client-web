@@ -1,14 +1,13 @@
 import type {Crag} from "../../@types/crag.type.ts";
 import montainCardThumbnail from "../../assets/mountain_card.png"
 import {useNavigate} from "react-router";
-import {type CSSProperties, useState} from "react";
+import {useState} from "react";
 import {Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, Typography} from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 type CragCardProps = {
     crag: Crag
 }
-
 
 const CragCard: React.FC<CragCardProps> = ({crag}) => {
 
@@ -19,9 +18,7 @@ const CragCard: React.FC<CragCardProps> = ({crag}) => {
         setIsFav(!isFav);
     }
 
-
     return (
-
         <Card sx={{maxWidth: 345, margin: "5px"}}>
             <CardActionArea onClick={() => navigate(`/crags/${crag.id}`)}>
                 <CardMedia

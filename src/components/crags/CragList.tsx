@@ -43,11 +43,11 @@ const CragList = () => {
 
                 />
             </div>
-            {filteredCrags.map((crag: Crag, idx: number) => {
+            {filteredCrags.map((crag: Crag) => {
                 return (
-                    <>
-                        <CragCard crag={crag} key={idx}/>
-                    </>
+
+                        <CragCard crag={crag} key={crag.id}/>
+
                 )
             })}
         </div>

@@ -95,7 +95,3 @@ const CragTab = () => {
 };
 
 export default CragTab;
-{/*id={crag.id} name={crag.name} city={crag.city} postalCode={crag.postalCode} lat={crag.lat} lon={crag.lon}
-                                         altitude={crag.altitude} rockType={crag.rockType} minGrade={crag.minGrade} maxGrade={crag.maxGrade} exposure={crag.exposure}
-                                         favorableSeasons={crag.favorableSeasons} orientation={crag.orientation} photoUrl={crag.photoUrl} thumbnailUrl={crag.thumbnailUrl}*/
-}
