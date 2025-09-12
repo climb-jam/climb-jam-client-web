@@ -1,13 +1,13 @@
-import {useState} from 'react'
 import './App.css'
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import Router from "./routers/Router.tsx";
 import {createTheme} from '@mui/material/styles';
-import {LogInContext} from "./LogInContext.tsx";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {UserProvider} from "./context/AuthContext.tsx";
 
 const App = () => {
 
-    const [isLogged, setIsLogged] = useState(true); // false once we have the loggin token
     const theme = createTheme({
         palette: {
             primary: {
@@ -27,12 +27,13 @@ const App = () => {
 
     return (
         <>
+            <UserProvider>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <LogInContext value={{isLogged, setIsLogged}}>
-                    <Router isLogged={isLogged}/>
-                </LogInContext>
+                    <Router/>
+                <ToastContainer/>
             </ThemeProvider>
+            </UserProvider>
         </>
     )
 }

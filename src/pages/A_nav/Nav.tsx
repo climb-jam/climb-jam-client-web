@@ -13,7 +13,7 @@ const Nav = () => {
     const navigate = useNavigate();
 
     const menu = [
-        {label: "Mon profile", value: "/", icon: <HomeIcon/>, path: '/'},
+        {label: "Mon profile", value: "/home", icon: <HomeIcon/>, path: '/home'},
         {label: "Carte", value: "/search", icon: <MapIcon/>, path: '/search'},
         {label: "Social", value: "/social", icon: <GroupIcon/>, path: '/social'},
         {label: "Paramètres", value: "/settings", icon: <SettingsIcon/>, path: '/settings'},
