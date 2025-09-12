@@ -7,7 +7,7 @@ import {LogInContext} from "./LogInContext.tsx";
 
 const App = () => {
 
-    const [isLogged, setIsLogged] = useState(false);
+    const [isLogged, setIsLogged] = useState(true); // false once we have the loggin token
     const theme = createTheme({
         palette: {
             primary: {

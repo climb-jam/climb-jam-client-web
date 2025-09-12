@@ -2,9 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Stats from "./Stats.tsx";
-import Spots from "./Spots.tsx";
-import Ascents from "./Ascents.tsx";
+import RouteList from "../routes/RouteList.tsx";
+import CragDetails from "./CragDetails.tsx";
+import {useParams} from "react-router";
+import {useEffect, useState} from "react";
+import type {Crag} from "../../@types/crag.type.ts";
+import {fetchCragById} from "../../api/crag-api.ts";
 
 function samePageLinkNavigation(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -43,9 +46,21 @@ function LinkTab(props: LinkTabProps) {
         />
     );
 }
+
 // Stats, Croix, Spots
 
-const Index = ({}) => {
+const CragTab = () => {
+    const {id} = useParams();
+    const [crag, setCrag] = useState<Crag>({} as Crag)
+
+    useEffect(() => {
+        if (id) {
+            fetchCragById(id)
+                .then((crag: Crag) => {
+                    setCrag(crag);
+                })
+        }
+    }, [id]);
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -66,19 +81,21 @@ const Index = ({}) => {
             <Tabs
                 value={value}
                 onChange={handleChange}
-                aria-label="nav tabs of the profile"
+                aria-label="nav tabs of crags and routes"
                 role="navigation"
             >
-                <LinkTab label="Stats" href="/stats"/>
-                <LinkTab label="Croix" href="/croix"/>
-                <LinkTab label="Spots" href="/spots"/>
+                <LinkTab label={crag.name} href={`/crags/${crag.id}`}/>
+                <LinkTab label="Les lignes" href={`/crags/${crag.id}/route-list`}/>
             </Tabs>
             {/* Contenu des onglets */}
-            {value === 0 && <Stats/>}
-            {value === 1 && <Ascents/>}
-            {value === 2 && <Spots/>}
+            {value === 0 && <CragDetails cragProps={crag} />}
+            {value === 1 && <RouteList/>}
         </Box>
     );
 };
 
-export default Index;
+export default CragTab;
+{/*id={crag.id} name={crag.name} city={crag.city} postalCode={crag.postalCode} lat={crag.lat} lon={crag.lon}
+                                         altitude={crag.altitude} rockType={crag.rockType} minGrade={crag.minGrade} maxGrade={crag.maxGrade} exposure={crag.exposure}
+                                         favorableSeasons={crag.favorableSeasons} orientation={crag.orientation} photoUrl={crag.photoUrl} thumbnailUrl={crag.thumbnailUrl}*/
+}

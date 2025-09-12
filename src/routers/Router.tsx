@@ -13,6 +13,8 @@ import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
 
 import Home from "../pages/B_body/Home.tsx";
 import CragList from "../components/crags/CragList.tsx";
+import CragDetails from "../components/crags/CragDetails.tsx";
+import CragTab from "../components/crags/CragTab.tsx";
 
 const Router = ({isLogged}: { isLogged: boolean }) => {
 
@@ -27,7 +29,8 @@ const Router = ({isLogged}: { isLogged: boolean }) => {
                         <Route path="/social" element={<Social/>}/>
                         <Route path="/spots" element={<Spots/>}/>
                         <Route path="/stats" element={<Stats/>}/>
-                        <Route path="/crag-list" element={<CragList/>}/>
+                        <Route path="/crags" element={<CragList/>}/>
+                        <Route path="/crags/:id" element={<CragTab/>}/>
                         <Route path="*" element={<Error/>}/>
                     </Route>
                     :
