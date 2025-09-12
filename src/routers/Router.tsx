@@ -15,6 +15,8 @@ import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
 import Landing from "../pages/B_body/Landing.tsx";
 import Register from "../pages/B_body/Register.tsx";
 import Login from "../pages/B_body/Login.tsx";
+import CragDetails from "../components/crags/CragDetails.tsx";
+import CragTab from "../components/crags/CragTab.tsx";
 
 const Router = () => {
     const { isLoggedIn } = AuthContext();
@@ -32,6 +34,7 @@ const Router = () => {
                         <Route path="/spots" element={<Spots/>}/>
                         <Route path="/stats" element={<Stats/>}/>
                         <Route path="/crags" element={<CragList/>}/>
+                        <Route path="/crags/:id" element={<CragTab/>}/>
                         <Route path="*" element={<Error/>}/>
                     </Route>
                     ) : (
