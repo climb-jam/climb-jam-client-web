@@ -35,8 +35,8 @@ const AscentsByGradeChart: React.FC<Props> = ({ ascentsByGrade }) => {
         datasets: [
             {
                 label: "nombre ",
-                data: gradeList.map(grade => ascentsByGrade[grade] || 0),
-                backgroundColor: gradeList.map(grade => gradeColors[grade] || "#ffffff"),
+                data: gradeList.map((grade) => ascentsByGrade[grade] || 0),
+                backgroundColor: gradeList.map((grade) => gradeColors[grade] || "#999999"),
                 hoverOffset: 4,
                 barPercentage: 0.5,
                 barThickness: 6,
@@ -47,10 +47,27 @@ const AscentsByGradeChart: React.FC<Props> = ({ ascentsByGrade }) => {
         ],
     };
 
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    precision: 0
+                }
+            }
+        }
+    };
+
     return (
         <>
             <Typography variant="h6">Croix par cotation</Typography>
-            <Bar data={chartData} />
+            <Bar data={chartData} options={options} />
         </>
     );
 };
