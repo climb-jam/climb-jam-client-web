@@ -7,6 +7,7 @@ import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip
 import axios from "axios";
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
 import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
+import AscentsByMonthChart from "../../components/stats/AscentsByMonthChart.tsx";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -37,6 +38,9 @@ const Stats = () => {
                 <Typography variant="h4" gutterBottom>
                     Mes Statistiques
                 </Typography>
+
+
+
 
                 {/* GENERAL STATS */}
                 <Grid container spacing={3} sx={{mb: 3}}>
@@ -69,24 +73,34 @@ const Stats = () => {
 
                     {/* GRAPHS */}
                     <Grid container spacing={3}>
-                    <Grid item xs={12} md={6}>
-                        <Card>
-                            <CardContent>
-                                <AscentsByClimbingTypeChart ascentsByClimbingType={stats.ascentsByClimbingType}/>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Card>
                                 <CardContent>
-                                    <AscentsByGradeChart ascentsByGrade={stats.ascentsByGrade}/>
+                                    <AscentsByClimbingTypeChart ascentsByClimbingType={stats.ascentsByClimbingType}/>
                                 </CardContent>
                             </Card>
                         </Grid>
+
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} md={6}>
+                                <Card>
+                                    <CardContent>
+                                        <AscentsByGradeChart ascentsByGrade={stats.ascentsByGrade}/>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} md={6}>
+                                <Card>
+                                    <CardContent>
+                                        <AscentsByMonthChart ascentsByMonth={stats.ascentsByMonth}/>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                </Grid>
                 </Grid>
             </Container>
         </Pages>

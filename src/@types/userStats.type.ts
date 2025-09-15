@@ -4,4 +4,5 @@ export type UserStats = {
     totalMetersClimbed: number;
     ascentsByClimbingType: Record<string, number>;
     ascentsByGrade: Record<string, number>;
+    ascentsByMonth: Record<string, number>;
 }
