@@ -2,7 +2,7 @@ import type {Route} from "../@types/route.type.ts";
 import axios from "axios";
 
 const BASE_API_URL = "http://localhost:8080";
-const ENDPOINT = "/routes";
+const ENDPOINT = "routes";
 
 export const fetchRoutesById = async (id: string): Promise<Route[]> => {
     try {
