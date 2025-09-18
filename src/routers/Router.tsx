@@ -15,13 +15,19 @@ import LayoutWithoutNav from "../layout/LayoutWithoutNav.tsx";
 import Landing from "../pages/B_body/Landing.tsx";
 import Register from "../pages/B_body/Register.tsx";
 import Login from "../pages/B_body/Login.tsx";
-import CragDetails from "../components/crags/CragDetails.tsx";
 import CragTab from "../components/crags/CragTab.tsx";
 import RouteList from "../components/routes/RouteList.tsx";
+import RouteDetails from "../components/routes/RouteDetails.tsx";
+import {useEffect, useState} from "react";
 
 const Router = () => {
     const { isLoggedIn } = AuthContext();
-    const isLogged = isLoggedIn();
+    //const isLogged = isLoggedIn();
+    const [isLogged, setIsLogged] = useState<boolean>(isLoggedIn())
+
+    useEffect(() => {
+        setIsLogged(isLoggedIn())
+    }, [isLogged, isLoggedIn]);
 
     return (
         <>
@@ -37,6 +43,7 @@ const Router = () => {
                         <Route path="/crags" element={<CragList/>}/>
                         <Route path="/crags/:id" element={<CragTab/>}/>
                         <Route path="/crags/:id/routes" element={<RouteList/>}/>
+                        <Route path="/crags/:id/routes/:idRoute" element={<RouteDetails/>}/>
                         <Route path="*" element={<Error/>}/>
                     </Route>
                     ) : (

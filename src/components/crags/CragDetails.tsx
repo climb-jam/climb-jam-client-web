@@ -15,8 +15,8 @@ const CragDetails = ({cragProps}: CragDetailsProps) => {
 
     return (
         <Pages title={cragProps.name}>
-            <Box sx={{border:"1px solid black", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "100px"}}>
-            <img style={{width: "400px", padding: "10px"}} src={mountainThumbnail} alt="La montagne"/>
+            <Box sx={{border:"1px solid black", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "100px",maxWidth:375}}>
+            <img style={{width: "350px", padding: "10px"}} src={mountainThumbnail} alt="La montagne"/>
             <p>{cragProps.city}, {cragProps.postalCode}</p>
             <p>Longitude et latitude: {cragProps.lat}, {cragProps.lon}</p>
             <p>Cotation: {cragProps.minGrade} à {cragProps.maxGrade}</p>

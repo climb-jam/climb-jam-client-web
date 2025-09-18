@@ -3,6 +3,7 @@ import {Box, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import RouteItem from "./RouteItem.tsx";
 import { handleBorder} from "./handleBorder.ts";
+import {useNavigate} from "react-router";
 
 type routeProps = {
     routes: Route,
@@ -10,9 +11,10 @@ type routeProps = {
 
 const RouteCard = ({routes}: routeProps) => {
      const [border, setBorder] = useState<string>("2px solid red");
+    const navigate = useNavigate();
     useEffect(() => {
         return handleBorder(routes.grade, setBorder)
-    }, []);
+    }, [routes.grade]);
 
     const boxStyle = {
         display: "flex",
@@ -28,7 +30,7 @@ const RouteCard = ({routes}: routeProps) => {
     }
 
     return (
-        <Box sx={boxStyle}>
+        <Box sx={boxStyle} onClick={() => (navigate(`/crags/${routes.crag.id}/routes/${routes.id}`))}>
             <RouteItem routes={routes.grade} border={border}/>
             <Typography sx={typoStyle}>{routes.name} {routes.climbingTypes}</Typography>
         </Box>

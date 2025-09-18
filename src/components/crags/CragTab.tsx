@@ -85,7 +85,7 @@ const CragTab = () => {
                 role="navigation"
             >
                 <LinkTab label={crag.name} href={`/crags/${crag.id}`}/>
-                <LinkTab label="Les lignes" href={`/crags/${crag.id}/route-list`}/>
+                <LinkTab label="Les lignes" href={`/crags/${crag.id}/routes`}/>
             </Tabs>
             {/* Contenu des onglets */}
             {value === 0 && <CragDetails cragProps={crag} />}
