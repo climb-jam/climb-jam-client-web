@@ -7,8 +7,7 @@ import Pages from '../../components/layout/Pages.tsx';
 import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCrags} from "../../api/crag-api.ts";
 import {useNavigate} from "react-router";
-import {Link} from "react-router-dom";
-import {Button, TextField} from "@mui/material";
+import {TextField} from "@mui/material";
 import MapPopupCard from "../../components/map/MapPopupCard.tsx";
 
 

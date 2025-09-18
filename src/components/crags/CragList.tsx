@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCrags} from "../../api/crag-api.ts";
 import CragCard from "./CragCard.tsx";
-import {Link} from "react-router-dom";
 import {TextField} from "@mui/material";
 
 const CragList = () => {
@@ -44,11 +43,11 @@ const CragList = () => {
 
                 />
             </div>
-            {filteredCrags.map((crag: Crag, idx: number) => {
+            {filteredCrags.map((crag: Crag) => {
                 return (
-                    <>
-                        <CragCard crag={crag} key={idx}/>
-                    </>
+
+                        <CragCard crag={crag} key={crag.id}/>
+
                 )
             })}
         </div>
