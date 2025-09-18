@@ -1,12 +1,12 @@
 import React, {createContext, useEffect, useState} from 'react';
-import type {UserProfile} from "../@types/user.type.ts";
+import type {User} from "../@types/user.type.ts";
 import {useNavigate} from "react-router";
 import {getProfileAPI, loginAPI, registerAPI} from "../api/authService.ts";
 import {toast} from "react-toastify";
 import axios from "axios";
 
 type UserContextType = {
-    user: UserProfile | null;
+    user: User | null;
     token: string | null;
     registerUser: (email: string, password: string, username: string) => void;
     loginUser: (email: string, password: string) => void;
@@ -23,7 +23,7 @@ export const UserProvider = ({ children }: Props) => {
 
     const navigate = useNavigate();
     const [token, setToken] = useState<string | null>(null);
-    const [user, setUser] = useState<UserProfile | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isReady, setIsReady] = useState(false); // using isReady because we have many async patters, will make sure our component renders correctly
 
     useEffect(() => {
