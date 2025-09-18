@@ -13,5 +13,5 @@ export type Crag = {
     favorableSeasons?: string[],
     orientation: string[],
     photoUrl: string,
-    thumbnailUrl: string,
+    thumbnailUrl: string | null,
 }

@@ -1,12 +1,11 @@
 import Pages from "../../components/layout/Pages";
+import ClimbingSessions from "../../components/ascents/ClimbingSessions.tsx";
 
-const Ascents = ({}) => {
+const Ascents = () => {
 
     return (
-        <Pages title={"Croix"}>
-            <div>
-                <h1>My ascents</h1>
-            </div>
+        <Pages title={"Mes Sessions et Croix"}>
+            <ClimbingSessions/>
         </Pages>
     );
 };
