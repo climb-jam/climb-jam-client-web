@@ -47,8 +47,6 @@ const AscentsByClimbingTypeChart: React.FC<Props> = ({ ascentsByClimbingType }) 
                 data: climbingTypeList.map((type) => ascentsByClimbingType[type]),
                 backgroundColor: climbingTypeList.map((type) => climbingTypeColors[type] || "#ffffff"),
                 hoverOffset: 4
-
-
             },
         ],
     };

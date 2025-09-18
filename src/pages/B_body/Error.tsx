@@ -1,10 +1,11 @@
 import Pages from "../../components/layout/Pages";
+import {LinearProgress} from "@mui/material";
 
 const Error = () => {
     return (
         <>
             <Pages title={"error"}>
-                <h1>Error 404</h1>
+                <LinearProgress/>
             </Pages>
         </>
     );

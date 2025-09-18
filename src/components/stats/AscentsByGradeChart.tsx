@@ -41,8 +41,6 @@ const AscentsByGradeChart: React.FC<Props> = ({ ascentsByGrade }) => {
                 barPercentage: 0.5,
                 barThickness: 6,
                 maxBarThickness: 8,
-
-
             },
         ],
     };

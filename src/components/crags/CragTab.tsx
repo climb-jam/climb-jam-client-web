@@ -85,7 +85,7 @@ const CragTab = () => {
                 role="navigation"
             >
                 <LinkTab label={crag.name} href={`/crags/${crag.id}`}/>
-                <LinkTab label="Les lignes" href={`/crags/${crag.id}/route-list`}/>
+                <LinkTab label="Les lignes" href={`/crags/${crag.id}/routes`}/>
             </Tabs>
             {/* Contenu des onglets */}
             {value === 0 && <CragDetails cragProps={crag} />}
@@ -95,7 +95,3 @@ const CragTab = () => {
 };
 
 export default CragTab;
-{/*id={crag.id} name={crag.name} city={crag.city} postalCode={crag.postalCode} lat={crag.lat} lon={crag.lon}
-                                         altitude={crag.altitude} rockType={crag.rockType} minGrade={crag.minGrade} maxGrade={crag.maxGrade} exposure={crag.exposure}
-                                         favorableSeasons={crag.favorableSeasons} orientation={crag.orientation} photoUrl={crag.photoUrl} thumbnailUrl={crag.thumbnailUrl}*/
-}
