@@ -1,6 +1,6 @@
 import {useParams} from "react-router";
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import type {Route} from "../../@types/route.type.ts";
 import {fetchRoutesByCragId} from "../../api/route-api.ts";
 import RouteCard from "./RouteCard.tsx";
@@ -21,12 +21,19 @@ const RouteList = () => {
         }
     }, [id]);
 
+    const [expanded, setExpanded] = React.useState<string | false>(false);
+    const handleChange =
+        (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
+            setExpanded(newExpanded ? panel : false);
+        };
+
     return (
         <Box sx={{width: '100%'}}>
             <Stack spacing={2}>
                 {routes.map((routes: Route) => {
                     return (
-                        <RouteCard routes={routes} key={routes.id} />
+                        <RouteCard routes={routes} key={routes.id} expanded={expanded}
+                                   handleChange={handleChange}/>
                     )
                 })}
             </Stack>

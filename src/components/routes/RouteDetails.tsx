@@ -44,7 +44,7 @@ const RouteDetails = () => {
     return (
         <div>
             <RouteDetailsCard routes={routes}/>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} style={{paddingTop:'10px'}}>
                 <Stack textAlign={"left"} justifyContent={"flex-start"} justifyItems={"flex-start"} direction="column"
                        spacing={2}>
                     <FormLabel id="performence">J'ai fait la ligne: </FormLabel>
@@ -91,7 +91,7 @@ const RouteDetails = () => {
                         style={{width: "100%"}}
                         {...register("comment")}
                     />
-                    <button type="submit">Ajouter aux croix</button>
+                    <button type="submit">Ajouter</button>
                 </Stack>
             </form>
 

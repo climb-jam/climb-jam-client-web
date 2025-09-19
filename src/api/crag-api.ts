@@ -1,7 +1,7 @@
 import axios from "axios";
 import type {Crag} from "../@types/crag.type.ts";
 
-const BASE_API_URL = "http://localhost:8080";
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 const ENDPOINT = "crags"
 
 export const fetchCrags = async (): Promise<Crag[]> => {
