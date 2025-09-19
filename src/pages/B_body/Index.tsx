@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Stats from "./Stats.tsx";
-import Spots from "./Spots.tsx";
+import FavoriteCrags from "./FavoriteCrags.tsx";
 import Ascents from "./Ascents.tsx";
 
 function samePageLinkNavigation(
@@ -43,7 +43,7 @@ function LinkTab(props: LinkTabProps) {
         />
     );
 }
-// Stats, Croix, Spots
+// Stats, Croix, FavoriteCrags
 
 const Index = ({}) => {
     const [value, setValue] = React.useState(0);
@@ -76,7 +76,7 @@ const Index = ({}) => {
             {/* Contenu des onglets */}
             {value === 0 && <Stats/>}
             {value === 1 && <Ascents/>}
-            {value === 2 && <Spots/>}
+            {value === 2 && <FavoriteCrags/>}
         </Box>
     );
 };

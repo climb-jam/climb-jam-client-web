@@ -5,7 +5,7 @@ import Index from "../pages/B_body/Index.tsx";
 import Search from "../pages/B_body/Search.tsx";
 import Settings from "../pages/B_body/Settings.tsx";
 import Social from "../pages/B_body/Social.tsx";
-import Spots from "../pages/B_body/Spots.tsx";
+import FavoriteCrags from "../pages/B_body/FavoriteCrags.tsx";
 import Stats from "../pages/B_body/Stats.tsx";
 import CragList from "../components/crags/CragList.tsx";
 import Error from "../pages/B_body/Error.tsx";
@@ -38,7 +38,7 @@ const Router = () => {
                         <Route path="/search" element={<Search/>}/>
                         <Route path="/settings" element={<Settings/>}/>
                         <Route path="/social" element={<Social/>}/>
-                        <Route path="/spots" element={<Spots/>}/>
+                        <Route path="/spots" element={<FavoriteCrags/>}/>
                         <Route path="/stats" element={<Stats/>}/>
                         <Route path="/crags" element={<CragList/>}/>
                         <Route path="/crags/:id" element={<CragTab/>}/>

@@ -13,7 +13,7 @@ const LocationCard: React.FC<LocationProps> = ({ location }) => {
             <Avatar
                 variant="rounded"
                 src={montainCardThumbnail}
-                sx={{ width: 48, height: 48 }}
+                sx={{ width: 50, height: 50 }}
                 alt={location.name}
             />
             <Box>
