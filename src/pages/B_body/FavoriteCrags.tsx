@@ -72,14 +72,14 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
                                         transform: 'translateY(-2px)',
                                     },
                                 }}
-                                onClick={() => navigate(`/crags/${fav.crag.id}`)}
                             >
+                                <Box display="flex" alignItems="center" onClick={() => navigate(`/crags/${fav.crag.id}`)}>
                                 <Avatar
                                     variant="rounded"
                                     src={montainCardThumbnail}
                                     sx={{ width: 60, height: 60 }}
                                 />
-                                <Box>
+                                <Container>
                                     <Typography variant="h6">{fav.crag.name}</Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {fav.crag.postalCode}, {fav.crag.city}
@@ -87,6 +87,7 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
                                     <Typography variant="caption" color="text.secondary">
                                         Altitude : {fav.crag.altitude} m
                                     </Typography>
+                                </Container>
                                 </Box>
                                 <IconButton
                                     onClick={() => handleRemoveFavorite(fav.id)}
