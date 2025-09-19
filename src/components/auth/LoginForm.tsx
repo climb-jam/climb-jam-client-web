@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import "./LoginForm.css";
 import logo from "../../assets/logoFull.png";
+import Stack from "@mui/material/Stack";
 
 type LoginFormInputs = {
     email: string,
@@ -23,6 +24,7 @@ const LoginForm = () => {
         loginUser(form.email, form.password);
     }
     return (
+        <Stack alignItems={"center"} justifyContent={"center"} textAlign={"center"} minHeight={"90vh"}  >
         <section className="login-section">
             <div className="login-container">
                 {/* Logo */}
@@ -86,6 +88,7 @@ const LoginForm = () => {
                 </div>
             </div>
         </section>
+        </Stack>
     );
 };
 
