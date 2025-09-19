@@ -79,15 +79,15 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
                                     src={montainCardThumbnail}
                                     sx={{ width: 60, height: 60 }}
                                 />
-                                <Container>
-                                    <Typography variant="h6">{fav.crag.name}</Typography>
+                                    <Box display="flex" flexDirection="column" justifyContent="flex-start" textAlign="left" ml={2}>
+                                    <Typography variant="body2" fontWeight={600}>{fav.crag.name}</Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        {fav.crag.postalCode}, {fav.crag.city}
+                                        {fav.crag.city}
                                     </Typography>
                                     <Typography variant="caption" color="text.secondary">
                                         Altitude : {fav.crag.altitude} m
                                     </Typography>
-                                </Container>
+                                </Box>
                                 </Box>
                                 <IconButton
                                     onClick={() => handleRemoveFavorite(fav.id)}

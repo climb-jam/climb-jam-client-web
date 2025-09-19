@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Box, Typography, Paper, Stack, Collapse} from '@mui/material';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import {Box, Typography, Paper, Stack, Collapse, Container} from '@mui/material';
+import CommentIcon from '@mui/icons-material/Comment';
 import LocationPinIcon from '@mui/icons-material/LocationPin';
+import CheckIcon from '@mui/icons-material/Check';
 import GradeBadge from './GradeBadge.tsx';
 import LocationCard from './LocationCard.tsx';
 import type {Session} from "../../@types/session.type.ts";
@@ -33,32 +34,38 @@ const SessionCard: React.FC<Props> = ({ session, ascents }) => {
                 },
             }}
         >
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={1} >
+            <Box display="flex" justifyContent="space-between" alignItems="center" mb={1} gap={2} >
                 <Typography variant="h6">
                     Session du {new Date(session.date).toLocaleDateString("fr-FR")}
                 </Typography>
             </Box>
 
-            <Typography variant="subtitle2" gutterBottom>
-                Mes croix
-            </Typography>
 
             {/* Ascents */}
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <Stack spacing={2} mb={3}>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={1} >
+                <Typography variant="subtitle2" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
+                    <CheckIcon fontSize="small" sx={{ verticalAlign: "middle", mr: 1 }} />
+                    Mes croix
+                </Typography>
+                </Box>
+
+                <Stack spacing={2} mb={3}>
                 {ascents.map((ascent) => (
-                    <Box display="flex" alignItems="center" gap={2} key={ascent.id}>
+                    <Box key={ascent.id}>
                         <GradeBadge grade={ascent.route.grade} />
                         <Box>
+                            <Box display="flex" flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
                             <Typography>{ascent.route.name}</Typography>
                             <Typography variant="caption" color="text.secondary">
                                 {ascent.tries} essai{ascent.tries > 1 ? "s" : ""} • {ascent.style}
                             </Typography>
+                            </Box>
 
                             {/* Comment for each Ascent */}
                             {ascent.comment && (
-                                <Box mt={2} display="flex" alignItems="center" gap={1} p={1} bgcolor="#F3F6F3FF" borderRadius={1}>
-                                    <ChatBubbleOutlineIcon fontSize="small" color="primary" sx={{ mr: 1 }} />
+                                <Box mt={2} display="flex" textAlign="left"  p={1} bgcolor="#F3F6F3FF" borderRadius={1}>
+                                    <CommentIcon fontSize="small" color="primary" sx={{ mr: 1 }} />
                                     <Typography variant="body2" color="textSecondary">
                                         {ascent.comment}
                                     </Typography>
@@ -68,13 +75,14 @@ const SessionCard: React.FC<Props> = ({ session, ascents }) => {
                     </Box>
                 ))}
             </Stack>
+                {/* Location (crag) */}
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={1} >
+                <Typography variant="subtitle2" mb={1}>
+                    <LocationPinIcon fontSize="small" sx={{ verticalAlign: "middle", mr: 1 }} />
+                    Lieu grimpé
+                </Typography>
+                </Box>
             </Collapse>
-
-            {/* Location (crag) */}
-            <Typography variant="subtitle2" mb={1}>
-                <LocationPinIcon fontSize="small" sx={{ verticalAlign: "middle", mr: 1 }} />
-                Lieu grimpé
-            </Typography>
 
             <LocationCard location={session.crag} />
         </Paper>
