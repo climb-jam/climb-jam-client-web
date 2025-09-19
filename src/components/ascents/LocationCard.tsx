@@ -16,7 +16,7 @@ const LocationCard: React.FC<LocationProps> = ({ location }) => {
                 sx={{ width: 50, height: 50 }}
                 alt={location.name}
             />
-            <Box display="flex" flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
+            <Box display="flex" flexDirection="column" justifyContent="flex-start" textAlign="left">
                 <Typography variant="body2" fontWeight={600}>
                     {location.name}
                 </Typography>
