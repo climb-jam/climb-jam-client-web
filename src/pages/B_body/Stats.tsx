@@ -8,6 +8,7 @@ import axios from "axios";
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
 import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
 import AscentsByMonthChart from "../../components/stats/AscentsByMonthChart.tsx";
+import BackNav from "../A_nav/BackNav.tsx";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -33,6 +34,7 @@ const Stats = () => {
 
     return (
         <Pages title={"Statistiques"}>
+
 
             <Container maxWidth="lg" sx={{mt: 4}}>
                 <Typography variant="h4" gutterBottom>

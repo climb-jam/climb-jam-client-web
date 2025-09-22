@@ -3,6 +3,7 @@ import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCrags} from "../../api/crag-api.ts";
 import CragCard from "./CragCard.tsx";
 import {TextField} from "@mui/material";
+import BackNav from "../../pages/A_nav/BackNav.tsx";
 
 const CragList = () => {
 
@@ -32,8 +33,9 @@ const CragList = () => {
         }
     })
     return (
-        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center" }}>
-            <div style={{ width: "100%" }}>
+        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center",justifyContent:"center" ,marginTop:"38px"}}>
+            <BackNav backNavText={"Carte"}/>
+            <div style={{ width: "100%",marginBottom: "10px" }}>
                 <TextField
                     id="outlined-basic"
                     onChange={inputHandler}

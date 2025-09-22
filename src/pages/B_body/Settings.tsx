@@ -3,6 +3,7 @@ import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {Avatar, Box, Button, Container, Paper, Stack, TextField, Typography} from "@mui/material";
+import BackNav from "../A_nav/BackNav.tsx";
 
 const Settings = () => {
 
