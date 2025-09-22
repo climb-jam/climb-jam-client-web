@@ -11,7 +11,7 @@ export type Crag = {
     maxGrade: string,
     exposure: number,
     favorableSeasons?: string[],
-    orientation: string[],
+    orientations?: string[],
     photoUrl: string,
     thumbnailUrl: string | null,
 }
