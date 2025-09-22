@@ -12,6 +12,7 @@ import Stack from "@mui/material/Stack";
 import RouteDetailsCard from "./RouteDetailsCard.tsx";
 import {date} from "yup";
 import type {PickerValue} from "@mui/x-date-pickers/internals";
+import BackNav from "../../pages/A_nav/BackNav.tsx";
 
 const RouteDetails = () => {
     const {idRoute} = useParams();
@@ -42,9 +43,11 @@ const RouteDetails = () => {
     }
     console.log(errors);
     return (
-        <div>
+        <>
+            <BackNav backNavText={"Le spot"}/>
+            <Box mt={"38px"}>
             <RouteDetailsCard routes={routes}/>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} style={{paddingTop:'10px'}}>
                 <Stack textAlign={"left"} justifyContent={"flex-start"} justifyItems={"flex-start"} direction="column"
                        spacing={2}>
                     <FormLabel id="performence">J'ai fait la ligne: </FormLabel>
@@ -91,11 +94,12 @@ const RouteDetails = () => {
                         style={{width: "100%"}}
                         {...register("comment")}
                     />
-                    <button type="submit">Ajouter aux croix</button>
+                    <button type="submit">Ajouter</button>
                 </Stack>
             </form>
+            </Box>
 
-        </div>
+        </>
     );
 };
 

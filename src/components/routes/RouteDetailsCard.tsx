@@ -24,7 +24,8 @@ const RouteDetailsCard = ({routes}: routeProps) => {
         lineHeight: "5px",
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         height: "100%",
-        marginBottom: "15px"
+        marginBottom: "5px"
+
     }
 
     return (

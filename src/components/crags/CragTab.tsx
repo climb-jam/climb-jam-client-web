@@ -8,6 +8,7 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import type {Crag} from "../../@types/crag.type.ts";
 import {fetchCragById} from "../../api/crag-api.ts";
+import BackNav from "../../pages/A_nav/BackNav.tsx";
 
 function samePageLinkNavigation(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -77,7 +78,10 @@ const CragTab = () => {
     };
 
     return (
-        <Box sx={{width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center',
+            marginTop: "38px"
+        }}>
+            <BackNav backNavText={"Les spots"}/>
             <Tabs
                 value={value}
                 onChange={handleChange}
