@@ -1,2 +1,1 @@
-/// <reference types="vite/client" />
-VITE_BASE_API_URL= "http://192.168.0.128:8080"
+VITE_BASE_API_URL=${VITE_BASE_API_URL}
