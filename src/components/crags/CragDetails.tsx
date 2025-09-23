@@ -18,7 +18,6 @@ type CragDetailsProps = {
 }
 
 const CragDetails = ({cragProps}: CragDetailsProps) => {
-    console.log(cragProps.orientations, "message")
 
     return (
         <Pages title={cragProps.name}>
