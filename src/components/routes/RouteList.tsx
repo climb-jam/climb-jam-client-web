@@ -28,7 +28,7 @@ const RouteList = () => {
         };
 
     return (
-        <Box sx={{width: '100%'}}>
+        <Box sx={{width: '100%', marginTop:'10px'}}>
             <Stack spacing={2}>
                 {routes.map((routes: Route) => {
                     return (

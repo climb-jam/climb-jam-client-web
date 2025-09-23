@@ -5,7 +5,6 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import "./LoginForm.css";
 import logo from "../../assets/logoFull.png";
 import Stack from "@mui/material/Stack";
-import BackNav from "../../pages/A_nav/BackNav.tsx";
 
 type LoginFormInputs = {
     email: string,
