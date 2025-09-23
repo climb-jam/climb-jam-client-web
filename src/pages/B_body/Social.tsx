@@ -1,5 +1,4 @@
 import Pages from "../../components/layout/Pages";
-import BackNav from "../A_nav/BackNav.tsx";
 
 const Social = ({}) => {
 

@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import type {UserStats} from "../../@types/userStats.type.ts";
 import {Card, CardContent, CircularProgress, Container, Grid, Typography} from "@mui/material";
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement} from "chart.js";
+import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from "chart.js";
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
 import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
 import AscentsByMonthChart from "../../components/stats/AscentsByMonthChart.tsx";
@@ -35,9 +35,9 @@ const Stats = () => {
     if (loading) return <CircularProgress/>;
 
     const hasData =
-        stats.totalSessions > 0 ||
-        stats.totalAscents > 0 ||
-        stats.totalMetersClimbed > 0;
+        stats!.totalSessions > 0 ||
+        stats!.totalAscents > 0 ||
+        stats!.totalMetersClimbed > 0;
 
     return (
         <Pages title={"Statistiques"}>
@@ -48,29 +48,29 @@ const Stats = () => {
 
                 <Grid container spacing={3} sx={{mt: 3, mb: 3}} justifyContent={"center"} alignItems={"center"}>
                     {/* TOTAL STATS */}
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{width: '200px'}}>
+                    <Grid size={{xs:12, md:3}}>
+                        <Card>
                             <CardContent>
                                 <Typography variant="h6">Total Sessions</Typography>
-                                <Typography variant="h4">{stats.totalSessions || 0}</Typography>
+                                <Typography variant="h4">{stats!.totalSessions || 0}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
 
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{width: '200px'}}>
+                    <Grid size={{xs: 12, md: 3}}>
+                        <Card>
                             <CardContent>
                                 <Typography variant="h6">Total Croix</Typography>
-                                <Typography variant="h4">{stats.totalAscents || 0}</Typography>
+                                <Typography variant="h4">{stats!.totalAscents || 0}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
 
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{width: '200px'}}>
+                    <Grid size={{xs: 12, md: 3}}>
+                        <Card>
                             <CardContent>
                                 <Typography variant="h6">Mètres Grimpés</Typography>
-                                <Typography variant="h4">{stats.totalMetersClimbed || 0} m</Typography>
+                                <Typography variant="h4">{stats!.totalMetersClimbed || 0} m</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -78,32 +78,32 @@ const Stats = () => {
                     {/* GRAPHIQUES */}
                     <Grid container spacing={3} sx={{mt: 2}} justifyContent={"center"} alignItems={"center"}>
                         {!hasData ? (
-                                <Typography variant="h7" align="center" mt="30px">
+                                <Typography variant="h6" align="center" mt="30px">
                                     Pas encore de statistiques
                                 </Typography>
                         ) : (
                             <>
-                                <Grid item xs={12} md={6}>
+                                <Grid size={{xs: 12, md: 6}}>
                                     <Card>
                                         <CardContent>
                                             <AscentsByClimbingTypeChart
-                                                ascentsByClimbingType={stats.ascentsByClimbingType}/>
+                                                ascentsByClimbingType={stats!.ascentsByClimbingType}/>
                                         </CardContent>
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={12} md={6}>
+                                <Grid size={{xs: 12, md: 6}}>
                                     <Card>
                                         <CardContent>
-                                            <AscentsByGradeChart ascentsByGrade={stats.ascentsByGrade}/>
+                                            <AscentsByGradeChart ascentsByGrade={stats!.ascentsByGrade}/>
                                         </CardContent>
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={12} md={6}>
+                                <Grid size={{xs: 12, md: 6}}>
                                     <Card>
                                         <CardContent>
-                                            <AscentsByMonthChart ascentsByMonth={stats.ascentsByMonth}/>
+                                            <AscentsByMonthChart ascentsByMonth={stats!.ascentsByMonth}/>
                                         </CardContent>
                                     </Card>
                                 </Grid>

@@ -17,7 +17,7 @@ import Register from "../pages/B_body/Register.tsx";
 import Login from "../pages/B_body/Login.tsx";
 import CragTab from "../components/crags/CragTab.tsx";
 import RouteList from "../components/routes/RouteList.tsx";
-import RouteDetails from "../components/routes/RouteDetails.tsx";
+import AscentForm from "../components/ascents/AscentForm.tsx";
 import {useEffect, useState} from "react";
 
 const Router = () => {
@@ -43,7 +43,7 @@ const Router = () => {
                         <Route path="/crags" element={<CragList/>}/>
                         <Route path="/crags/:id" element={<CragTab/>}/>
                         <Route path="/crags/:id/routes" element={<RouteList/>}/>
-                        <Route path="/crags/:id/routes/:idRoute" element={<RouteDetails/>}/>
+                        <Route path="/crags/:id/routes/:idRoute" element={<AscentForm/>}/>
                         <Route path="*" element={<Error/>}/>
                     </Route>
                     ) : (
