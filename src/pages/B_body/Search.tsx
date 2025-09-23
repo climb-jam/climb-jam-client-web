@@ -56,7 +56,7 @@ const Search = () => {
                         label="Search"
                     />
                 </div>
-                <button className="buttonMap" onClick={() => navigate("/crags")}>Recherche par spots...</button>
+                <button className="buttonMap" onClick={() => navigate("/crags")}>Rechercher par spots...</button>
                 <MapContainer style={{width: "100 %", height: "85vh", zIndex: 0}} center={centerOfFrance} zoom={5}
                               scrollWheelZoom={true} ref={setMap}>
 

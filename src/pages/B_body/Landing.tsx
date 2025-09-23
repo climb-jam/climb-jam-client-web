@@ -24,7 +24,7 @@ const Landing = () => {
 
                     <h2>Rejoins-nous !</h2>
                     <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
-                        Connecte-toi avec une <b>communauté de grimpeurs</b> passionnés de plein air.
+                        Connecte-toi à une <b>communauté de grimpeurs</b> passionnés de plein air.
                     </p>
                     <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "4rem" }}>
                         <button
@@ -57,19 +57,19 @@ const Landing = () => {
                     </div>
 
                     <div style={{ marginBottom: "3rem" }}>
-                    <h3>Trouves les infos des spots d'escalades</h3>
+                    <h3>Trouve les infos des spots d'escalade</h3>
                         <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
-                            ClimbJAM recense les <b>sites d’escalade</b> en France. Découvres de nouvelles falaises en utilisant la recherche ou en consultant notre <b>carte des spots</b> français.
+                            ClimbJAM recense les <b>sites d’escalade</b> en France. Découvre de nouvelles falaises en utilisant la recherche ou en consultant notre <b>carte des spots</b> français.
                         </p>
-                    <img src={map} alt="carte des spots"/>
+                    <img src={map} alt="carte des spots" style={{ maxWidth: "100%", height: "auto" }}/>
                     </div>
 
                     <div style={{ marginBottom: "3rem" }}>
                         <h3>Visualise ta progression</h3>
                         <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
-                            ClimbJAM te permet d'<b>enregistrer tes sessions et tes croix</b> effectuées, et de <b>suivre ta progression</b> notamment grâce à des <b>graphiques</b>.
+                            ClimbJAM te permet d'<b>enregistrer tes sessions et les croix</b> que tu as effectuées, et de <b>suivre ta progression</b> notamment grâce à des <b>graphiques</b>.
                         </p>
-                            <img src={stats} alt="statistiques"/>
+                            <img src={stats} alt="statistiques" style={{ maxWidth: "100%", height: "auto" }}/>
                     </div>
                 </div>
             </Pages>
