@@ -40,7 +40,7 @@ const Stats = () => {
         stats!.totalMetersClimbed > 0;
 
     return (
-        <Pages title={"Statistiques"}>
+        <Pages title={"Statistiques - ClimbJAM"}>
             <Container maxWidth="lg" sx={{mt: 4, mb: 6}}>
                 <Typography variant="h4" gutterBottom>
                     Mes statistiques

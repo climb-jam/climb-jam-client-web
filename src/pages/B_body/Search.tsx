@@ -45,7 +45,7 @@ const Search = () => {
 
     return (
         <>
-            <Pages title={"Carte"}>
+            <Pages title={"Carte - ClimbJAM"}>
 
                 <div className="search">
                     <TextField

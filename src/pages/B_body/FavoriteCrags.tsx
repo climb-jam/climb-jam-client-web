@@ -48,7 +48,7 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
     if (loading) return <CircularProgress />;
 
     return (
-        <Pages title={"FavoriteCrags"}>
+        <Pages title={"Mes Spots Favoris - ClimbJAM"}>
 
             <Container maxWidth="lg" sx={{ mt: 4, mb: 6}}>
                 <Typography variant="h4" gutterBottom>

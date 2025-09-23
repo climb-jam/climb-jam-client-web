@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="535.68756"
+   height="388.28885"
+   viewBox="0 0 535.68756 388.28885"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="103.82763"
+       y="635.94421"
+       width="792.98352"
+       height="216.74017"
+       id="rect6" />
+  </defs>
+  <g
+     id="g1"
+     transform="translate(-224.15195,-229.06972)">
+    <path
+       style="fill:#47824e;fill-opacity:1"
+       d="m 515.89354,229.06971 -102.20533,132.218 -31.31052,-39.0976 -158.22574,211.69075 535.68761,-0.28679 z"
+       id="path4" />
+    <path
+       style="fill:#8cdb9f;fill-opacity:1"
+       d="M 368.92154,489.14224 514.43346,280.82129 660.23878,477.21194 515.73131,376.69962 Z"
+       id="path5" />
+    <text
+       xml:space="preserve"
+       id="text6"
+       style="text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);fill:#1e303d;fill-opacity:0.988235"
+       transform="matrix(5.3858953,0,0,5.9923447,-264.4947,-3263.2129)"><tspan
+         x="103.82812"
+         y="647.42017"
+         id="tspan4"><tspan
+           style="font-weight:bold;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Bold'"
+           id="tspan3">ClimbJAM</tspan></tspan></text>
+  </g>
+</svg>

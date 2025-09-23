@@ -22,7 +22,7 @@ const Social = () => {
     if (loading) return <CircularProgress />;
 
     return (
-        <Pages title={"Social"}>
+        <Pages title={"Social - ClimbJAM"}>
 
             <Container maxWidth="lg" sx={{mt: 4, mb: 6}}>
                 <Typography variant="h4" gutterBottom>

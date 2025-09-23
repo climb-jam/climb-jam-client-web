@@ -5,7 +5,7 @@ import BackNav from "../A_nav/BackNav.tsx";
 const Error = () => {
     return (
         <>
-            <Pages title={"error"}>
+            <Pages title={"Error - ClimbJAM"}>
                 <BackNav/>
                 <LinearProgress/>
             </Pages>
