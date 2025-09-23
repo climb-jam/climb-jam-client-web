@@ -24,12 +24,3 @@ export const fetchRoutesById = async (id: string): Promise<Route> => {
     }
 }
 
-export const fetchPostRoute = async (data: Partial<Route>): Promise<Route> => {
-    try {
-        const response = await axios.post(`${BASE_API_URL}/${ENDPOINT}`, data);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        return {} as Route;
-    }
-}

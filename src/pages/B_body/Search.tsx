@@ -9,7 +9,6 @@ import {fetchCrags} from "../../api/crag-api.ts";
 import {useNavigate} from "react-router";
 import {TextField} from "@mui/material";
 import MapPopupCard from "../../components/map/MapPopupCard.tsx";
-import BackNav from "../A_nav/BackNav.tsx";
 
 
 const Search = () => {
