@@ -104,7 +104,7 @@ const Stats = () => {
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={6} sx={{mb: 3}}>
                                     <Card>
                                         <CardContent>
                                             <AscentsByMonthChart ascentsByMonth={stats.ascentsByMonth}/>
