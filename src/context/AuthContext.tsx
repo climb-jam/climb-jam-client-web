@@ -38,22 +38,16 @@ export const UserProvider = ({ children }: Props) => {
     }, []);
 
     const registerUser = async (email: string, password: string, username: string) => {
-        await registerAPI(email, password, username)
-            .then((res) => {
-                if (res) {
-                    localStorage.setItem("token", res?.data.token);
-                    const userObject = {
-                        email: res?.data.email,
-                        username: res?.data.username,
-                    };
-                    localStorage.setItem("user", JSON.stringify(userObject));
-                    setToken(res?.data.token!);
-                    setUser(userObject!);
-                    toast.success("Connexion réussie !");
-                    navigate("/home");
-                }
-            })
-            .catch((e) => toast.warning("Erreur serveur."));
+        try {
+            const res = await registerAPI(email, password, username);
+
+            if (res) {
+                toast.success("Inscription réussie ! Connecte-toi maintenant.");
+                navigate("/login");
+            }
+        } catch (e) {
+            toast.warning("Erreur lors de l'inscription.");
+        }
     };
 
     const loginUser = async (email: string, password: string) => {
