@@ -50,7 +50,7 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
     return (
         <Pages title={"FavoriteCrags"}>
 
-            <Container maxWidth="lg" sx={{ mt: 4 }}>
+            <Container maxWidth="lg" sx={{ mt: 4, mb: 6}}>
                 <Typography variant="h4" gutterBottom>
                     Mes spots favoris
                 </Typography>

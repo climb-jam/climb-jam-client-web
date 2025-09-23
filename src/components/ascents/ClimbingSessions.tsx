@@ -41,7 +41,7 @@ const ClimbingSessions = () => {
     if (loading) return <CircularProgress />;
 
     return (
-        <Container maxWidth="lg" sx={{mt: 4}}>
+        <Container maxWidth="lg" sx={{mt: 4, mb: 6}}>
             <Typography variant="h4" gutterBottom>
                 Mes sessions d'escalade
             </Typography>
