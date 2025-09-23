@@ -34,10 +34,6 @@ const Stats = () => {
 
     if (loading) return <CircularProgress/>;
 
-    // if (!stats) {
-    //     return <Typography>Impossible de charger les statistiques.</Typography>;
-    // }
-
     const hasData =
         stats.totalSessions > 0 ||
         stats.totalAscents > 0 ||
@@ -45,12 +41,12 @@ const Stats = () => {
 
     return (
         <Pages title={"Statistiques"}>
-            <Container maxWidth="lg" sx={{mt: 4}}>
+            <Container maxWidth="lg" sx={{mt: 4, mb: 6}}>
                 <Typography variant="h4" gutterBottom>
-                    Mes Statistiques
+                    Mes statistiques
                 </Typography>
 
-                <Grid container spacing={3} sx={{mt: 6, mb: 3}} justifyContent={"center"} alignItems={"center"}>
+                <Grid container spacing={3} sx={{mt: 3, mb: 3}} justifyContent={"center"} alignItems={"center"}>
                     {/* TOTAL STATS */}
                     <Grid item xs={12} md={3}>
                         <Card sx={{width: '200px'}}>
@@ -104,7 +100,7 @@ const Stats = () => {
                                     </Card>
                                 </Grid>
 
-                                <Grid item xs={12} md={6} sx={{mb: 3}}>
+                                <Grid item xs={12} md={6}>
                                     <Card>
                                         <CardContent>
                                             <AscentsByMonthChart ascentsByMonth={stats.ascentsByMonth}/>
