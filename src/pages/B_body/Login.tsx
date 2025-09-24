@@ -4,7 +4,7 @@ import BackNav from "../A_nav/BackNav.tsx";
 
 const Login = () => {
     return (
-        <Pages title={"Me connecter"}>
+        <Pages title={"Me connecter - ClimbJAM"}>
             <LoginForm />
         </Pages>
     );

@@ -3,8 +3,9 @@ import {AuthContext} from "../../context/AuthContext.tsx";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import "./LoginForm.css";
-import logo from "../../assets/logoFull.png";
+import logo from "../../assets/logoFull.svg";
 import Stack from "@mui/material/Stack";
+import {useNavigate} from "react-router";
 
 type LoginFormInputs = {
     email: string,
@@ -20,6 +21,8 @@ const LoginForm = () => {
     const { loginUser } = AuthContext();
     const {register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
 
+    const navigate = useNavigate();
+
     const handleLogin = (form: LoginFormInputs) => {
         loginUser(form.email, form.password);
     }
@@ -30,7 +33,7 @@ const LoginForm = () => {
             <div className="login-container">
                 {/* Logo */}
                 <div className="login-logo">
-                    <img src={logo} alt="ClimbJAM" />
+                    <img src={logo} alt="ClimbJAM" onClick={() => navigate("/")}/>
                 </div>
 
                 {/* Form container */}

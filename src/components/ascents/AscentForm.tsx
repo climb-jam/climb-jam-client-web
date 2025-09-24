@@ -76,7 +76,7 @@ const AscentForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} style={{paddingTop:'10px',marginBottom:'40px'}}>
                 <Stack textAlign={"left"} justifyContent={"flex-start"} justifyItems={"flex-start"} direction="column"
                        spacing={2}>
-                    <FormLabel id="style">J'ai fait la ligne: </FormLabel>
+                    <FormLabel id="style">J'ai fait la ligne : </FormLabel>
                     <RadioGroup
                         row
                         aria-labelledby="style"
@@ -93,7 +93,7 @@ const AscentForm = () => {
                     {errors.style && <FormHelperText>
                         <Typography color="error">{errors.style.message}</Typography>
                     </FormHelperText>}
-                    <FormLabel id="date">Date: </FormLabel>
+                    <FormLabel id="date">Date : </FormLabel>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
                         <Box>
                             <Controller
@@ -125,24 +125,24 @@ const AscentForm = () => {
                     {errors.date && <FormHelperText>
                         <Typography color="error">{errors.date.message}</Typography>
                     </FormHelperText>}
-                    <FormLabel id="tries">Nombre d'essaie: </FormLabel>
-                    <TextField type="number" placeholder="Nombre d'essaie" {...register("tries", {
+                    <FormLabel id="tries">Nombre d'essais : </FormLabel>
+                    <TextField type="number" placeholder="Nombre d'essais" {...register("tries", {
                         max: 500,
                         min: 1,
                         value: 1,
-                        required: "Essaie obligatoire"
+                        required: "Essai obligatoire"
                     })} error={!!errors.tries}/>
                     {errors.tries && <FormHelperText>
                         <Typography color="error">{errors.tries.message}</Typography>
                     </FormHelperText>}
-                    <FormLabel id="comment">Commentaire: </FormLabel>
+                    <FormLabel id="comment">Commentaire : </FormLabel>
                     <TextareaAutosize
                         aria-label="comment"
                         minRows={3}
                         placeholder="Ajoute un commentaire..."
                         style={{width: "100%"}}
                         {...register("comment", {
-                            maxLength:{value: 255, message: "Ecrit moins"},
+                            maxLength:{value: 255, message: "Ecris moins"},
                         })}
                     />
                     <Typography>{watch("comment")?.length??0}/255 caractères</Typography>

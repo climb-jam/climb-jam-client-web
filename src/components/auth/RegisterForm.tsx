@@ -3,8 +3,9 @@ import { AuthContext } from "../../context/AuthContext.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./LoginForm.css";
-import logo from "../../assets/logoFull.png";
+import logo from "../../assets/logoFull.svg";
 import Stack from "@mui/material/Stack";
+import {useNavigate} from "react-router";
 
 type RegisterFormInputs = {
     email: string;
@@ -31,6 +32,8 @@ const RegisterForm = () => {
         resolver: yupResolver(validation),
     });
 
+    const navigate = useNavigate();
+
     const handleRegister = (form: RegisterFormInputs) => {
         registerUser(form.email, form.password, form.username);
     };
@@ -41,7 +44,7 @@ const RegisterForm = () => {
             <div className="login-container">
                 {/* Logo */}
                 <div className="login-logo">
-                    <img src={logo} alt="ClimbJAM" />
+                    <img src={logo} alt="ClimbJAM" onClick={() => navigate("/")}/>
                 </div>
 
                 {/* Card */}

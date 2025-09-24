@@ -43,7 +43,7 @@ const Settings = () => {
     if (!user) return null;
 
     return (
-        <Pages title={"Paramètres"}>
+        <Pages title={"Paramètres - ClimbJAM"}>
 
             <Container maxWidth="sm" sx={{ mt: 4 }}>
                 <Typography variant="h4" gutterBottom>
