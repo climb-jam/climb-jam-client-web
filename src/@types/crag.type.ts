@@ -1,5 +1,6 @@
 export type Crag = {
     id: number,
+    isFav: boolean,
     name: string,
     city: string,
     postalCode: string,

@@ -8,7 +8,6 @@ import type {FavoriteCrag} from "../../@types/favoriteCrag.type.ts";
 import {deleteFavoriteCrag, getFavoriteCragsByUserId} from "../../api/favoriteCrag.ts";
 import montainCardThumbnail from "../../assets/mountain_card.png";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import BackNav from "../A_nav/BackNav.tsx";
 
 type FavoritesProps = {
     fav: FavoriteCrag
