@@ -3,9 +3,9 @@ import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {Avatar, Box, Button, Container, Paper, Stack, TextField, Typography} from "@mui/material";
-
+import {useThemeContext} from "../../context/ThemeContext";
 const Settings = () => {
-
+    const {toggleTheme, mode} = useThemeContext();
     const { user, logout } = AuthContext();
     const navigate = useNavigate();
 
@@ -39,6 +39,11 @@ const Settings = () => {
         logout();
         navigate("/login");
     };
+
+    const handleTheme = () => {
+
+    };
+
 
     if (!user) return null;
 
@@ -111,7 +116,9 @@ const Settings = () => {
                         >
                             Changer le mot de passe
                         </Button>
-
+                        <Button variant="outlined" color="primary" onClick={toggleTheme}>
+                            {mode === "light" ? "Mode sombre 🌙" : "Mode clair 🌞"}
+                        </Button>
                         <Button variant="outlined" color="error" onClick={handleLogout}>
                             Se déconnecter
                         </Button>

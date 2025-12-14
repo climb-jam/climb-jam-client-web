@@ -1,7 +1,7 @@
 .nav {
     position: fixed;
     z-index: 100;
-    background-color: #fff;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -24,13 +24,16 @@
     cursor: pointer;
     padding: 6px;
     width: 100%;
-
+    color: inherit;
 }
 
 .nav-item span {
     margin-top: 4px;
 }
 
+.nav-item svg {
+    color: inherit;
+}
 .nav-item.active {
     border: 2px solid #12c905;
     border-radius: 10px;
