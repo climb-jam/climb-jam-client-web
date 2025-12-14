@@ -4,7 +4,7 @@ import {fetchCrags} from "../../api/crag-api.ts";
 import CragCard from "./CragCard.tsx";
 import {TextField} from "@mui/material";
 import BackNav from "../../pages/A_nav/BackNav.tsx";
-import type {FavoriteCrag} from "../../@types/favoriteCrag.type.ts";
+
 
 const CragList = () => {
 
