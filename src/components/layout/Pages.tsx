@@ -10,7 +10,11 @@ const Pages = ({children, title}: PageProps) => {
 
     return (
 
-        <Box >
+        <Box sx={{
+            bgcolor: "background.default",
+            color: "text.primary",
+            minHeight: "100vh",
+        }}>
             <title>{title}</title>
             {children}
         </Box>

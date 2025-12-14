@@ -1,53 +1,43 @@
-import * as React from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import SettingsIcon from '@mui/icons-material/Settings';
-import GroupIcon from '@mui/icons-material/Group';
-import HomeIcon from '@mui/icons-material/Home';
-import MapIcon from '@mui/icons-material/Map';
+import * as React from "react";
 import {useNavigate} from "react-router";
-import {Paper} from "@mui/material";
+import "./Nav.css";
 
+import HomeIcon from "@mui/icons-material/Home";
+import MapIcon from "@mui/icons-material/Map";
+import GroupIcon from "@mui/icons-material/Group";
+import SettingsIcon from "@mui/icons-material/Settings";
+import {useTheme} from "@mui/material/styles";
 const Nav = () => {
-    const [value, setValue] = React.useState('/');
+    const [value, setValue] = React.useState("/home");
     const navigate = useNavigate();
+    const theme = useTheme();
 
     const menu = [
-        {label: "Mon profile", value: "/home", icon: <HomeIcon/>, path: '/home'},
-        {label: "Carte", value: "/search", icon: <MapIcon/>, path: '/search'},
-        {label: "Social", value: "/social", icon: <GroupIcon/>, path: '/social'},
-        {label: "Paramètres", value: "/settings", icon: <SettingsIcon/>, path: '/settings'},
-    ]
-    const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-    };
+        {label: "Mon profil", value: "/home", icon: <HomeIcon/>, path: "/home"},
+        {label: "Carte", value: "/search", icon: <MapIcon/>, path: "/search"},
+        {label: "Social", value: "/social", icon: <GroupIcon/>, path: "/social"},
+        {label: "Paramètres", value: "/settings", icon: <SettingsIcon/>, path: "/settings"},
+    ];
 
     return (
-        <Paper
-            sx={{position: "fixed", bottom: 0, left: 0, right: 0, zIndex:200}}
-            elevation={3}
-        >
-        <BottomNavigation  sx={{width: "100%", margin: "auto",padding:0 ,zIndex: 200}} value={value} onChange={handleChange}  >
-            {
-                menu.map((page, index) => (
-                    <BottomNavigationAction
-                        key={index}
-                        label={page.label}
-                        value={page.value}
-                        icon={page.icon}
-                        onClick={() => navigate(page.path)}
-                        sx={{
-                            "&.Mui-selected": {
-                                border: "2px solid #12C905",   // couleur de la bordure (bleu par défaut MUI)
-                                borderRadius: "5%",           // arrondi pour un effet cercle
-                                padding: "6px",                // évite que la bordure coupe l’icône
-                            }
-                        }}
-                    />
-                ))
-            }
-        </BottomNavigation>
-        </Paper>
+        <nav className="nav" style={{
+            backgroundColor: theme.palette.background.paper,
+            color: theme.palette.text.primary,
+        }}>
+            {menu.map((page) => (
+                <button
+                    key={page.value}
+                    className={`nav-item ${value === page.value ? "active" : ""}`}
+                    onClick={() => {
+                        setValue(page.value);
+                        navigate(page.path);
+                    }}
+                >
+                    {page.icon}
+                    <span>{page.label}</span>
+                </button>
+            ))}
+        </nav>
     );
 };
 

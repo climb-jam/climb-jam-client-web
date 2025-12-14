@@ -5,6 +5,7 @@ import CragCard from "./CragCard.tsx";
 import {TextField} from "@mui/material";
 import BackNav from "../../pages/A_nav/BackNav.tsx";
 
+
 const CragList = () => {
 
     const [crags, setCrags] = useState<Crag[]>([])
