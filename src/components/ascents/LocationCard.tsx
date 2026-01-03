@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Avatar } from '@mui/material';
 import type {Crag} from "../../@types/crag.type.ts";
-import montainCardThumbnail from "../../assets/mountain_card.png";
+import montainCardThumbnail from "../../assets/mountain_card.webp";
 
 type LocationProps = {
     location: Crag;

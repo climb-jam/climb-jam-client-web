@@ -1,8 +1,8 @@
 import Pages from "../../components/layout/Pages";
 import {useNavigate} from "react-router";
-import logo from "../../assets/logo.svg";
-import map from "../../assets/map.png";
-import stats from "../../assets/stats-mobile.png";
+import logo from "../../assets/logo.webp";
+import map from "../../assets/map.webp";
+import stats from "../../assets/stats-mobile.webp";
 
 
 

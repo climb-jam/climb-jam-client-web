@@ -1,4 +1,4 @@
-import thumbnailPopup from "../../assets/mountain_thumbnail.png"
+import thumbnailPopup from "../../assets/mountain_thumbnail.webp"
 import type {Crag} from "../../@types/crag.type.ts";
 import {useNavigate} from "react-router";
 

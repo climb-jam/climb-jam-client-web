@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./LoginForm.css";
-import logo from "../../assets/logoFull.svg";
+import logo from "../../assets/logoFull.webp";
 import Stack from "@mui/material/Stack";
 import {useNavigate} from "react-router";
 

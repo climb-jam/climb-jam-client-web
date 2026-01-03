@@ -1,6 +1,6 @@
 import type {User} from "../../@types/user.type.ts";
 import {Card, CardContent, CardMedia, Typography} from "@mui/material";
-import climberPic from "../../assets/climberPic.png";
+import climberPic from "../../assets/climberPic.webp";
 
 type Props = {
     climber: User
