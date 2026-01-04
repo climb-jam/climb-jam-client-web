@@ -1,7 +1,6 @@
 import axios from "axios";
 import {handleError} from "../helpers/ErrorHandler.tsx";
 import type {FavoriteCrag} from "../@types/favoriteCrag.type.ts";
-import type {Ascent} from "../@types/ascent.type.ts";
 import type {Crag} from "../@types/crag.type.ts";
 
 //const BASE_API_URL = "http://localhost:8080";

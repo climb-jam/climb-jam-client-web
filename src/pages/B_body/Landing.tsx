@@ -3,75 +3,130 @@ import {useNavigate} from "react-router";
 import logo from "../../assets/logo.webp";
 import map from "../../assets/map.webp";
 import stats from "../../assets/stats-mobile.webp";
+import {useThemeContext} from "../../context/ThemeContext.tsx";
+import {Box, Typography, Button} from "@mui/material";
 
 
 
 const Landing = () => {
     const navigate = useNavigate();
+    const { mode } = useThemeContext();
+    const isDark = mode === "dark";
 
     return (
             <Pages title={"Accueil - ClimbJAM"}>
-                <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center", padding: "1rem" }}>
+                <Box
+                    sx={{
+                        width: "100%",
+                        mx: "auto",
+                        textAlign: "center",
+                        px: 2,
+                        py: 10,
+                        color: isDark ? "#f3f4f6" : "#111827",
+                        backgroundColor: isDark ? "#1a1a1a" : "#f9fafb",
+                    }}
+                >
+                    <Box sx={{ mb: 4 }}>
+                        <img
+                            src={logo}
+                            alt="Logo ClimbJAM"
+                            style={{ height: 100, width: "auto", cursor: "pointer" }}
+                            onClick={() => navigate("/")}
+                        />
+                    </Box>
 
-                    <div style={{ marginBottom: "1rem" }}>
-                        <img src={logo} alt="Logo ClimbJAM" style={{ height: "100px", width: "auto" }} />
-                    </div>
+                    <Typography variant="h3" gutterBottom>
+                        ClimbJAM
+                    </Typography>
 
-                    <h1>ClimbJAM</h1>
-                    <p style={{ marginBottom: "3rem", fontSize: "1.5rem", color: "#555" }}>
+                    <Typography
+                        variant="h6"
+                        sx={{ mb: 5, color: isDark ? "#cbd5e1" : "#555" }}
+                    >
                         Découvre les plus beaux sites d’escalade naturels en France et suis tes performances.
-                    </p>
+                    </Typography>
 
-                    <h2>Rejoins-nous !</h2>
-                    <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
+                    <Typography variant="h3" gutterBottom>
+                        Rejoins-nous !
+                    </Typography>
+                    <Typography
+                        variant="body1"
+                        sx={{ mb: 2, color: isDark ? "#cbd5e1" : "#555" }}
+                    >
                         Connecte-toi à une <b>communauté de grimpeurs</b> passionnés de plein air.
-                    </p>
-                    <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "4rem" }}>
-                        <button
-                            onClick={() => navigate("/register")}
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: "white",
-                                color: "#47824e",
-                                border: "2px solid #47824e",
-                                borderRadius: "4px",
-                                cursor: "pointer",
+                    </Typography>
+
+                    <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 5, flexWrap: "wrap" }}>
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                border: `2px solid ${isDark ? "#6ee7b7" : "#47824e"}`,
+                                color: isDark ? "#6ee7b7" : "#47824e",
+                                px: 3,
+                                py: 1,
+                                "&:hover": {
+                                    backgroundColor: isDark ? "#6ee7b7" : "#47824e",
+                                    color: "#fff",
+                                },
                             }}
+                            onClick={() => navigate("/register")}
                         >
                             S'inscrire
-                        </button>
+                        </Button>
 
-                        <button
-                            onClick={() => navigate("/login")}
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: "#47824e",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "4px",
-                                cursor: "pointer",
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: isDark ? "#34d399" : "#47824e",
+                                color: isDark ? "#1f2937" : "#fff",
+                                px: 3,
+                                py: 1,
+                                "&:hover": {
+                                    backgroundColor: isDark ? "#059669" : "#2e522f",
+                                },
                             }}
+                            onClick={() => navigate("/login")}
                         >
                             Se connecter
-                        </button>
-                    </div>
+                        </Button>
+                    </Box>
 
-                    <div style={{ marginBottom: "3rem" }}>
-                    <h3>Trouve les infos des spots d'escalade</h3>
-                        <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
-                            ClimbJAM recense les <b>sites d’escalade</b> en France. Découvre de nouvelles falaises en utilisant la recherche ou en consultant notre <b>carte des spots</b> français.
-                        </p>
-                    <img src={map} alt="carte des spots" style={{ maxWidth: "100%", height: "auto" }}/>
-                    </div>
+                    <Box sx={{ mb: 5 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Trouve les infos des spots d'escalade
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{ mb: 2, color: isDark ? "#cbd5e1" : "#555" }}
+                        >
+                            ClimbJAM recense les <b>sites d’escalade</b> en France. Découvre de nouvelles falaises
+                            en utilisant la recherche ou en consultant notre <b>carte des spots</b> français.
+                        </Typography>
+                        <img
+                            src={map}
+                            alt="carte des spots"
+                            style={{ maxWidth: "100%", height: "auto" }}
+                        />
+                    </Box>
 
-                    <div style={{ marginBottom: "3rem" }}>
-                        <h3>Visualise ta progression</h3>
-                        <p style={{ marginBottom: "1rem", fontSize: "1rem", color: "#555" }}>
-                            ClimbJAM te permet d'<b>enregistrer tes sessions et les croix</b> que tu as effectuées, et de <b>suivre ta progression</b> notamment grâce à des <b>graphiques</b>.
-                        </p>
-                            <img src={stats} alt="statistiques" style={{ maxWidth: "100%", height: "auto" }}/>
-                    </div>
-                </div>
+                    <Box sx={{ mb: 5 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Visualise ta progression
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{ mb: 2, color: isDark ? "#cbd5e1" : "#555" }}
+                        >
+                            ClimbJAM te permet d'<b>enregistrer tes sessions et les croix</b> que tu as effectuées,
+                            et de <b>suivre ta progression</b> notamment grâce à des <b>graphiques</b>.
+                        </Typography>
+                        <img
+                            src={stats}
+                            alt="statistiques"
+                            style={{ maxWidth: "100%", height: "auto" }}
+                        />
+                    </Box>
+                </Box>
             </Pages>
     );
 };

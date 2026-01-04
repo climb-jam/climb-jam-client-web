@@ -2,10 +2,12 @@ import * as Yup from "yup";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import "./LoginForm.css";
+import "./AuthForms.css";
 import logo from "../../assets/logoFull.webp";
 import Stack from "@mui/material/Stack";
 import {useNavigate} from "react-router";
+import {useState} from "react";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type LoginFormInputs = {
     email: string,
@@ -22,25 +24,25 @@ const LoginForm = () => {
     const {register, handleSubmit, formState: { errors }} = useForm<LoginFormInputs>({ resolver: yupResolver(validation)});
 
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = (form: LoginFormInputs) => {
         loginUser(form.email, form.password);
     }
     return (
-
-        <Stack alignItems={"center"} justifyContent={"center"} textAlign={"center"} minHeight={"90vh"}   >
-        <section className="login-section">
-            <div className="login-container">
+        <Stack alignItems={"center"} justifyContent={"center"} textAlign={"center"} minHeight={"90vh"}>
+        <section className="auth-section">
+            <div className="auth-container">
                 {/* Logo */}
-                <div className="login-logo">
+                <div className="auth-logo">
                     <img src={logo} alt="ClimbJAM" onClick={() => navigate("/")}/>
                 </div>
 
                 {/* Form container */}
-                <div className="login-card">
-                    <h1 className="login-title">Connexion</h1>
+                <div className="auth-card">
+                    <h1 className="auth-title">Connexion</h1>
 
-                    <form onSubmit={handleSubmit(handleLogin)} className="login-form">
+                    <form onSubmit={handleSubmit(handleLogin)} className="auth-form">
                         {/* Email */}
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
@@ -58,16 +60,35 @@ const LoginForm = () => {
                         {/* Password */}
                         <div className="form-group">
                             <label htmlFor="password">Mot de passe</label>
+                            <div style={{ position: "relative" }}>
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 placeholder="••••••••"
                                 {...register("password")}
+                                style={{ paddingRight: "2.5rem" }}
                             />
+                            {/* Eye/Visibility icon */}
+                            <span
+                                onClick={() => setShowPassword(prev => !prev)}
+                                style={{
+                                    position: "absolute",
+                                    right: "10px",
+                                    top: "50%",
+                                    transform: "translateY(-50%)",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </span>
+                            </div>
                             {errors.password && (
                                 <p className="error-message">{errors.password.message}</p>
                             )}
                         </div>
+
 
                         {/* Options */}
                         <div className="form-options">
