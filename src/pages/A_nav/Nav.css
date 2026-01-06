@@ -39,6 +39,20 @@
     border-radius: 10px;
 }
 
+.nav-logo {
+    cursor: default;
+    pointer-events: none;
+}
+
+.nav-logo-icon {
+    height: 24px;
+    width: auto;
+}
+
+.nav-logo span {
+    font-weight: 600;
+}
+
 
 @media screen and (min-width: 1024px) {
     .nav {
