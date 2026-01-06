@@ -1,40 +1,47 @@
-/* ===== Light Mode (par défaut) ===== */
+/* ===== Light Mode ===== */
 
-.login-section {
-    max-height: 100vh;
+.auth-section {
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #f9fafb;
     padding: 1rem;
-
 }
 
-.login-container {
+.auth-container {
     width: 100%;
     max-width: 400px;
 }
 
-.login-logo {
+.auth-logo {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.login-logo img {
+.auth-logo img {
     width: 120px;
     height: auto;
+    cursor: pointer;
 }
 
-.login-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+.auth-logo img:hover {
+    transform: scale(1.04);
+}
+
+
+.auth-card {
+    background: white;
+    border-color: #e5e7eb;
     border-radius: 6px;
     padding: 24px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    color: #111827;
 }
 
-.login-title {
+.auth-title {
     text-align: center;
     font-size: 1.4rem;
     font-weight: 600;
@@ -42,7 +49,7 @@
     color: #111827;
 }
 
-.login-form {
+.auth-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -59,11 +66,11 @@
 .form-group input {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #d1d5db;
+    border-color: #d1d5db;
     border-radius: 4px;
     font-size: 0.95rem;
     color: #111827;
-    background-color: #ffffff;
+    background-color: white;
 }
 
 .form-group input:focus {
@@ -80,19 +87,15 @@
 
 .form-options {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    justify-content: flex-end;
     font-size: 0.85rem;
-}
-
-.form-options .forgot-password {
     align-self: flex-end;
 }
 
 .forgot-password {
     color: #47824e;
     text-decoration: none;
+    align-self: flex-end;
 }
 
 .forgot-password:hover {
@@ -131,69 +134,86 @@
     text-decoration: underline;
 }
 
-/* ===== Dark Mode (automatique via media query) ===== */
+/* ===== Dark Mode ===== */
 
-@media (prefers-color-scheme: dark) {
-    .login-section {
-        background: #1a1a1a;
-    }
+body.Mui-dark .auth-section {
+    background: #1a1a1a;
+}
 
-    .login-card {
-        background: #2a2a2a;
-        border: 1px solid #444;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
+body.Mui-dark .auth-card {
+    background: #2a2a2a;
+    border-color: #444;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
 
-    .login-title {
-        color: #f3f4f6;
-    }
+body.Mui-dark .auth-title {
+    color: #f3f4f6;
+}
 
-    .form-group label {
-        color: #cbd5e1;
-    }
+body.Mui-dark .form-group label {
+    color: #cbd5e1;
+}
 
-    .form-group input {
-        background-color: #3a3a3a;
-        color: #f9fafb;
-        border-color: #555;
-    }
+body.Mui-dark .form-group input {
+    background-color: #3a3a3a;
+    color: #f9fafb;
+    border-color: #555;
+}
 
-    .form-group input:focus {
+body.Mui-dark .form-group input:focus {
         border-color: #34d399;
         box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
     }
 
-    .error-message {
+body.Mui-dark .error-message {
         color: #f87171;
     }
 
-    .forgot-password {
+body.Mui-dark .forgot-password {
         color: #6ee7b7;
-    }
+}
 
-    .forgot-password:hover {
-        text-decoration: underline;
-    }
-
-    .btn-submit {
+body.Mui-dark .btn-submit {
         background: #34d399;
         color: #1f2937;
-    }
+}
 
-    .btn-submit:hover {
+body.Mui-dark .btn-submit:hover {
         background: #059669;
-        color: white;
-    }
+}
 
-    .signup-text {
+body.Mui-dark .signup-text {
         color: #9ca3af;
-    }
+}
 
-    .signup-link {
+body.Mui-dark .signup-link {
         color: #6ee7b7;
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet */
+@media (min-width: 768px) {
+    .auth-container {
+        max-width: 480px;
     }
 
-    .signup-link:hover {
-        text-decoration: underline;
+    .auth-logo img {
+        width: 150px;
+    }
+}
+
+/* Laptop/Desktop */
+@media (min-width: 1024px) {
+    .auth-container {
+        max-width: 520px;
+    }
+
+    .auth-card {
+        padding: 32px;
+    }
+
+    .auth-title {
+        font-size: 1.6rem;
     }
 }

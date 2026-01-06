@@ -6,7 +6,7 @@ import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import type {FavoriteCrag} from "../../@types/favoriteCrag.type.ts";
 import {deleteFavoriteCrag, getFavoriteCragsByUserId} from "../../api/favoriteCrag.ts";
-import montainCardThumbnail from "../../assets/mountain_card.png";
+import montainCardThumbnail from "../../assets/mountain_card.webp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 type FavoritesProps = {

@@ -1,9 +1,9 @@
-import {createContext, useContext, useMemo, useState, type ReactNode} from "react";
-import {createTheme, ThemeProvider, CssBaseline} from "@mui/material";
+import {createContext, useContext, useMemo, useState, type ReactNode, useEffect} from "react";
+import {createTheme, ThemeProvider, CssBaseline, type Theme} from "@mui/material";
 
 type ThemeMode = "light" | "dark";
 
-interface ThemeContextType {
+interface ThemeContextType extends Theme{
     mode: ThemeMode;
     toggleTheme: () => void;
 }
@@ -23,21 +23,30 @@ export const ThemeContextProvider = ({children}: { children: ReactNode }) => {
         });
     };
 
-    const theme = useMemo(
-        () =>
-            createTheme({
-                palette: {
-                    mode,
-                    primary: {
-                        main: "#12C905", // ton vert ClimbJAM
+    // Synchronisation du thème avec le <body> pour le CSS custom
+    useEffect(() => {
+        document.body.classList.remove("Mui-light", "Mui-dark");
+        document.body.classList.add(`Mui-${mode}`);
+    }, [mode]);
+
+    const theme = useMemo(() => {
+            const muiTheme = createTheme({
+                    palette: {
+                        mode,
+                        primary: {
+                            main: "#12C905", // ton vert ClimbJAM
+                        },
                     },
-                },
-            }),
-        [mode]
-    );
+            });
+            return {
+                ...muiTheme,
+                mode,
+                toggleTheme,
+            };
+    }, [mode]);
 
     return (
-        <ThemeContext.Provider value={{mode, toggleTheme}}>
+        <ThemeContext.Provider value={theme}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 {children}
