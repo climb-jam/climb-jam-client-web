@@ -5,7 +5,6 @@ import Tab from '@mui/material/Tab';
 import Stats from "./Stats.tsx";
 import FavoriteCrags from "./FavoriteCrags.tsx";
 import Ascents from "./Ascents.tsx";
-import BackNav from "../A_nav/BackNav.tsx";
 
 function samePageLinkNavigation(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -63,7 +62,10 @@ const Index = ({}) => {
     };
 
     return (
-        <Box sx={{width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column',
+            alignItems: 'center',
+            pl: { md: '90px' } // Décalage pour Nav à gauche - md: 900px
+        }}>
 
             <Tabs
                 value={value}
