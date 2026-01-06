@@ -1,5 +1,9 @@
 import type {Crag} from "../../@types/crag.type.ts";
+
+import {useEffect} from "react";
+
 import montainCardThumbnail from "../../assets/mountain_card.webp"
+
 import {useNavigate} from "react-router";
 import {useState} from "react";
 import {
@@ -23,33 +27,35 @@ type CragCardProps = {
 const CragCard: React.FC<CragCardProps> = ({crag}) => {
     const navigate = useNavigate();
     const [isFav, setIsFav] = useState(crag.isFav);
-    const [favorites, setFavorites] = useState<FavoriteCrag[]>([]);
+    const [favoriteId, setFavoriteId] = useState<number | undefined>(crag.favoriteId);
+    useEffect(() => {
+        setIsFav(crag.isFav);
+        setFavoriteId(crag.favoriteId);
+    }, [crag.isFav, crag.favoriteId]);
 
 
     const handleFavoriteClick = async () => {
-        console.log(isFav)
         if (!isFav) {
             try {
-                const favorite: Partial<FavoriteCrag> = await fetchPostFavoriteCrag({
+                const favorite = await fetchPostFavoriteCrag({
                     crag: {id: crag.id}
                 });
-                console.log("Ajouté aux favoris :", favorite);
-                setIsFav(!isFav); // On met à jour l'état local
+
+                setIsFav(true);
+                setFavoriteId(favorite.id);
             } catch (error) {
                 console.error("Erreur ajout favoris :", error);
             }
-        }
-        else{
-        /*    //>TODO faire la suppression d'un favorisCrag
-            try {
-                const favorite: Partial<FavoriteCrag[]> = await deleteFavoriteCrag({fav.id});
+        } else {
+            if (!favoriteId) return;
 
-                console.log("Retirer aux favoris :", favorite);
-                console.log(isFav)
-                setIsFav(!isFav);
+            try {
+                await deleteFavoriteCrag(favoriteId);
+                setIsFav(false);
+                setFavoriteId(undefined);
             } catch (error) {
-                console.error("Erreur lors de la suppression du favori", error);
-            }*/
+                console.error("Erreur suppression favoris :", error);
+            }
         }
     };
 
@@ -77,7 +83,10 @@ const CragCard: React.FC<CragCardProps> = ({crag}) => {
             <CardActions sx={{display: "flex", flexDirection: "row-reverse"}}>
                 <IconButton
                     aria-label="add to favorites"
-                    onClick={handleFavoriteClick}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleFavoriteClick();
+                    } }
                     sx={{color: isFav ? "red" : "gray"}}
                 >
                     <FavoriteIcon/>
