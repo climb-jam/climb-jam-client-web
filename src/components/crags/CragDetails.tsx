@@ -1,6 +1,6 @@
 import Pages from "../../components/layout/Pages";
 import type {Crag} from "../../@types/crag.type.ts";
-import mountainThumbnail from "../../assets/mountain_card.png"
+import mountainThumbnail from "../../assets/mountain_card.webp"
 import {FaCanadianMapleLeaf, FaLeaf} from "react-icons/fa";
 import {Box} from "@mui/material";
 import {IoSnowSharp} from "react-icons/io5";

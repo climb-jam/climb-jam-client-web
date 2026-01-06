@@ -1,5 +1,5 @@
 import type {Crag} from "../../@types/crag.type.ts";
-import montainCardThumbnail from "../../assets/mountain_card.png"
+import montainCardThumbnail from "../../assets/mountain_card.webp"
 import {useNavigate} from "react-router";
 import {useState} from "react";
 import {

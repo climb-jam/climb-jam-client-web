@@ -64,9 +64,9 @@ const SessionCard: React.FC<Props> = ({ session, ascents }) => {
 
                             {/* Comment for each Ascent */}
                             {ascent.comment && (
-                                <Box mt={2} display="flex" textAlign="left"  p={1} bgcolor="#F3F6F3FF" borderRadius={1}>
+                                <Box mt={2} display="flex" textAlign="left"  p={1} bgcolor="background.paper" borderRadius={1}>
                                     <CommentIcon fontSize="small" color="primary" sx={{ mr: 1 }} />
-                                    <Typography variant="body2" color="textSecondary">
+                                    <Typography variant="body2" color="text.secondary">
                                         {ascent.comment}
                                     </Typography>
                                 </Box>
