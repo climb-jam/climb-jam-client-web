@@ -16,7 +16,7 @@ type LoginFormInputs = {
 
 const validation = Yup.object().shape({
     email: Yup.string().required("L'email est obligatoire").email("Email invalide"),
-    password: Yup.string().required("Le mot de passe est obligatoire").min(8, "Minimum 8 caractères"),
+    password: Yup.string().required("Le mot de passe est obligatoire").min(12, "Minimum 12 caractères"),
 });
 
 const LoginForm = () => {
