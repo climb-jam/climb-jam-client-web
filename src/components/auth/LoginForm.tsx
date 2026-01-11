@@ -6,7 +6,7 @@ import "./AuthForms.css";
 import logo from "../../assets/logoFull.webp";
 import Stack from "@mui/material/Stack";
 import {useNavigate} from "react-router";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 type LoginFormInputs = {
