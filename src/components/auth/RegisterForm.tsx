@@ -15,8 +15,11 @@ type RegisterFormInputs = {
     username: string;
 };
 
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
 const validation = Yup.object().shape({
-    email: Yup.string().required("L'email est obligatoire").email("Email invalide"),
+    email: Yup.string().required("L'email est obligatoire")
+        .matches(emailRegex,"Email invalide"),
     password: Yup.string().required("Le mot de passe est obligatoire")
         .min(12, "Minimum 12 caractères")
         .matches(/[@$!%*#?&]/, "Le mot de passe doit contenir un symbole: @$!%*#?&")
