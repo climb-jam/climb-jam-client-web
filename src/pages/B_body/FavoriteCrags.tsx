@@ -5,15 +5,11 @@ import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import type {FavoriteCrag} from "../../@types/favoriteCrag.type.ts";
-import {deleteFavoriteCrag, getFavoriteCragsByUserId} from "../../api/favoriteCrag.ts";
+import {deleteFavoriteCrag, getMyFavoriteCrags} from "../../api/favoriteCrag.ts";
 import montainCardThumbnail from "../../assets/mountain_card.webp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-type FavoritesProps = {
-    fav: FavoriteCrag
-}
-
-const FavoriteCrags: React.FC<FavoritesProps> = () => {
+const FavoriteCrags = () => {
 
     const { user } = AuthContext();
     const navigate = useNavigate();
@@ -27,7 +23,7 @@ const FavoriteCrags: React.FC<FavoritesProps> = () => {
             return;
         }
 
-        getFavoriteCragsByUserId(user.id)
+        getMyFavoriteCrags()
             .then(setFavorites)
             .catch((error) => {
                 console.error("Erreur lors de la récupération des spots favoris", error);

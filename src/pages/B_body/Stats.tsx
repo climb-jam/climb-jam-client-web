@@ -7,7 +7,7 @@ import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearS
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
 import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
 import AscentsByMonthChart from "../../components/stats/AscentsByMonthChart.tsx";
-import {fetchUserStats} from "../../api/userStats.ts";
+import {fetchMyStats} from "../../api/userStats.ts";
 import {useNavigate} from "react-router";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -19,11 +19,11 @@ const Stats = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!user || !user.id) {
+        if (!user) {
             navigate("/login")
             return;
         }
-        fetchUserStats(user.id)
+        fetchMyStats()
             .then((data) => setStats(data))
             .catch((error) => {
                 console.error("Erreur lors de la récupération des ascensions", error);
