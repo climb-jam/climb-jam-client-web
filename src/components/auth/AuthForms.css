@@ -84,6 +84,14 @@
     font-size: 0.8rem;
     color: #e11d48;
 }
+.gray{
+    background: #626060 !important;
+    cursor:default;
+}
+
+.gray:hover {
+    cursor: default;
+}
 
 .form-options {
     display: flex;
