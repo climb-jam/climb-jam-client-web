@@ -3,7 +3,7 @@ import {Container, Typography, Stack, CircularProgress} from '@mui/material';
 import SessionCard from './SessionCard.tsx';
 import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
-import {getAscentsByUserId} from "../../api/ascentApi.ts";
+import {getMyAscents} from "../../api/ascentApi.ts";
 import type {Ascent} from "../../@types/ascent.type.ts";
 
 const ClimbingSessions = () => {
@@ -18,7 +18,7 @@ const ClimbingSessions = () => {
             navigate("/login");
             return;
         }
-        getAscentsByUserId(user.id)
+        getMyAscents()
             .then((data) => {
                 // Group Ascents by Session
                 const groupedSessions = new Map<number, Ascent[]>();

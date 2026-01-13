@@ -1,11 +1,9 @@
-import axios from "axios";
 import {handleError} from "../helpers/ErrorHandler.tsx";
+import api from "./axios.ts";
 
-const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
-
-export const fetchUserStats = async (userId: number) => {
+export const fetchMyStats = async () => {
     try {
-        const response = await axios.get(`${BASE_API_URL}/users/${userId}/stats`);
+        const response = await api.get(`/stats/me`);
         return response.data;
     } catch (error) {
         handleError(error);
