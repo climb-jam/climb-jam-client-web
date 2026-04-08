@@ -1,58 +1,64 @@
-import {useEffect, useState} from "react";
-import type {Crag} from "../../@types/crag.type.ts";
-import {fetchCrags} from "../../api/crag-api.ts";
-import CragCard from "./CragCard.tsx";
-import {TextField} from "@mui/material";
-import BackNav from "../../pages/A_nav/BackNav.tsx";
+import {useState, useEffect} from "react";
+import type {Crag} from "../../@types/crag.type";
+import {fetchCragsPaginated, fetchCragsByNamePaginated} from "../../api/crag-api";
+import CragCard from "./CragCard";
+import BackNav from "../../pages/A_nav/BackNav";
+import SearchInput from "../SearchInput.tsx";
 
+const ITEMS_PER_PAGE = 6;
 
 const CragList = () => {
-
-    const [crags, setCrags] = useState<Crag[]>([])
-
-    useEffect(() => {
-        fetchCrags()
-            .then((crags: Crag[]) => {
-                setCrags(crags);
-            })
-    }, [])
-
+    const [crags, setCrags] = useState<Crag[]>([]);
     const [inputText, setInputText] = useState("");
-    const inputHandler = (e) => {
-        //convert input text to lower case
-        const lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+
+    const loadPage = async (page: number, name?: string) => {
+        let data;
+        if (name && name.trim() !== "") {
+            data = await fetchCragsByNamePaginated(name, page, ITEMS_PER_PAGE);
+        } else {
+            data = await fetchCragsPaginated(page, ITEMS_PER_PAGE);
+        }
+
+        setCrags(data.content);
+        setTotalPages(data.totalPages);
+        setCurrentPage(page);
     };
-    const filteredCrags = crags.filter((el) => {
-        //if no input the return the original
-        if (inputText === '') {
-            return el;
-        }
-        //return the item which contains the user input
-        else {
-            return el.name.toLowerCase().includes(inputText) || el.city.toLowerCase().includes(inputText)
-        }
-    })
+
+    // Charger la première page au montage et à chaque changement de recherche
+    useEffect(() => {
+        loadPage(0, inputText);
+    }, [inputText]);
+
     return (
-        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center",justifyContent:"center" ,marginTop:"38px"}}>
+        <div style={{
+            display: "flex",
+            margin: "0 auto",
+            width: "100%",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            marginTop: "38px"
+        }}>
             <BackNav backNavText={"Carte"}/>
-            <div style={{ width: "100%",marginBottom: "10px" }}>
-                <TextField
-                    id="outlined-basic"
-                    onChange={inputHandler}
-                    variant="outlined"
-                    fullWidth
-                    label="Search"
+            <SearchInput value={inputText} onChange={setInputText}/>
 
-                />
+            {crags.map((crag: Crag) => (
+                <CragCard crag={crag} key={crag.id}/>
+            ))}
+
+            {/* Pagination */}
+            <div style={{marginTop: "20px", width: "100%", textAlign: "center",marginBottom: "50px"}}>
+                <button disabled={currentPage === 0} onClick={() => loadPage(currentPage - 1, inputText)}>
+                    ← Précédent
+                </button>
+                <span style={{margin: "0 10px"}}>
+          {currentPage + 1} / {totalPages}
+        </span>
+                <button disabled={currentPage + 1 === totalPages} onClick={() => loadPage(currentPage + 1, inputText)}>
+                    Suivant →
+                </button>
             </div>
-            {filteredCrags.map((crag: Crag) => {
-                return (
-
-                        <CragCard crag={crag} key={crag.id}/>
-
-                )
-            })}
         </div>
     );
 };
