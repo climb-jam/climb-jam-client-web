@@ -1,4 +1,3 @@
-import axios from "axios";
 import {handleError} from "../helpers/ErrorHandler.tsx";
 import type {Ascent} from "../@types/ascent.type.ts";
 import api from "./axios.ts";
@@ -19,7 +18,7 @@ export const getMyAscents = async (): Promise<Ascent[]> => {
 
 export const fetchPostAscent = async (data: Partial<Ascent>): Promise<Ascent> => {
     try {
-        const response = await axios.post(URL, data);
+        const response = await api.post(URL, data);
         return response.data;
     } catch (error) {
         console.error(error);

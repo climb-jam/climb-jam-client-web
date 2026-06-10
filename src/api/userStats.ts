@@ -1,5 +1,5 @@
-import {handleError} from "../helpers/ErrorHandler.tsx";
 import api from "./axios.ts";
+import {handleError} from "../helpers/ErrorHandler.tsx";
 
 export const fetchMyStats = async () => {
     try {

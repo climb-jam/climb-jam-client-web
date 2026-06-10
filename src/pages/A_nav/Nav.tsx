@@ -1,47 +1,94 @@
 import * as React from "react";
-import {useNavigate} from "react-router";
-import "./Nav.css";
+import {useNavigate, useLocation} from "react-router";
+
+import {
+    BottomNavigation,
+    BottomNavigationAction,
+    Paper,
+    Box,
+    Typography
+} from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
 import SettingsIcon from "@mui/icons-material/Settings";
-import {useTheme} from "@mui/material/styles";
+
 import logo from "../../assets/logo.webp";
 
 const Nav = () => {
-    const [value, setValue] = React.useState("/home");
     const navigate = useNavigate();
-    const theme = useTheme();
+    const location = useLocation();
+
+    const [value, setValue] = React.useState(location.pathname);
+
+    React.useEffect(() => {
+        setValue(location.pathname);
+    }, [location.pathname]);
 
     const menu = [
-        {label: "Mon profil", value: "/home", icon: <HomeIcon/>, path: "/home"},
-        {label: "Carte", value: "/search", icon: <MapIcon/>, path: "/search"},
-        {label: "Paramètres", value: "/settings", icon: <SettingsIcon/>, path: "/settings"},
+        {label: "Accueil", value: "/home", icon: <HomeIcon/>},
+        {label: "Carte", value: "/search", icon: <MapIcon/>},
+        {label: "Paramètres", value: "/settings", icon: <SettingsIcon/>},
     ];
 
     return (
-        <nav className="nav" style={{
-            backgroundColor: theme.palette.background.paper,
-            color: theme.palette.text.primary,
-        }}>
-            <div className="nav-logo nav-item">
-                <img src={logo} alt="ClimbJAM" className="nav-logo-icon" />
-                <span>ClimbJAM</span>
-            </div>
-            {menu.map((page) => (
-                <button
-                    key={page.value}
-                    className={`nav-item ${value === page.value ? "active" : ""}`}
-                    onClick={() => {
-                        setValue(page.value);
-                        navigate(page.path);
-                    }}
-                >
-                    {page.icon}
-                    <span>{page.label}</span>
-                </button>
-            ))}
-        </nav>
+        <Paper
+            elevation={3}
+            sx={{
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                zIndex: 1000,
+                display: "flex",
+                alignItems: "center",
+                px: 2,
+                py: 1,
+            }}
+        >
+            {/* LOGO */}
+            <Box
+                onClick={() => navigate("/home")}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    gap: 1,
+                    mr: 2,
+                }}
+            >
+                <img
+                    src={logo}
+                    alt="ClimbJAM"
+                    style={{width: 32, height: 32}}
+                />
+                <Typography variant="subtitle1" fontWeight={600}>
+                    ClimbJAM
+                </Typography>
+            </Box>
+
+            {/* NAV */}
+            <BottomNavigation
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                    navigate(newValue);
+                }}
+                sx={{
+                    flex: 1,
+                    background: "transparent",
+                }}
+            >
+                {menu.map((page) => (
+                    <BottomNavigationAction
+                        key={page.value}
+                        label={page.label}
+                        value={page.value}
+                        icon={page.icon}
+                    />
+                ))}
+            </BottomNavigation>
+        </Paper>
     );
 };
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./axios.ts";
 import type {Crag} from "../@types/crag.type.ts";
 
 const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
@@ -6,7 +6,7 @@ const ENDPOINT = "crags"
 
 export const fetchCrags = async (): Promise<Crag[]> => {
     try {
-        const response = await axios.get(`${BASE_API_URL}/${ENDPOINT}`);
+        const response = await api.get(`${BASE_API_URL}/${ENDPOINT}`);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ export const fetchCrags = async (): Promise<Crag[]> => {
 
 export const fetchCragById = async (id: string): Promise<Crag> => {
     try {
-        const response = await axios.get(`${BASE_API_URL}/${ENDPOINT}/${id}`);
+        const response = await api.get(`${BASE_API_URL}/${ENDPOINT}/${id}`);
         return response.data;
     } catch (error) {
         console.error(error);
