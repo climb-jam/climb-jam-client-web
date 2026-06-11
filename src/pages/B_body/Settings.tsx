@@ -7,10 +7,12 @@ import {useThemeContext} from "../../context/ThemeContext";
 import avatar from "../../assets/climberPic.webp"
 import {deleteMyAccount} from "../../api/userApi.ts";
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Settings = () => {
     const {toggleTheme, mode} = useThemeContext();
-    const { user, logout } = AuthContext();
+    const {user, logout} = AuthContext();
     const navigate = useNavigate();
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -22,17 +24,31 @@ const Settings = () => {
 
     const handleLogout = () => {
         logout();
-        navigate("/login");
+        toast.info("Déconnexion réussie 👋");
+        setTimeout(() => {
+            navigate("/login");
+        }, 500);
+
     };
 
     const handleConfirmDelete = async () => {
         try {
             await deleteMyAccount();
+
             logout();
             localStorage.removeItem("token");
-            navigate("/home");
+
+            setOpenDeleteModal(false);
+
+            toast.success("Compte supprimé avec succès 👋");
+
+            setTimeout(() => {
+                navigate("/home");
+            }, 800);
+
         } catch (error) {
             console.error("Erreur suppression compte", error);
+            toast.error("Erreur lors de la suppression du compte");
         }
     };
 
@@ -41,12 +57,12 @@ const Settings = () => {
     return (
         <Pages title={"Paramètres - ClimbJAM"}>
 
-            <Container maxWidth="sm" sx={{ mt: 4 }}>
+            <Container maxWidth="sm" sx={{mt: 4}}>
                 <Typography variant="h4" gutterBottom>
                     Paramètres du compte
                 </Typography>
 
-                <Paper elevation={2} sx={{ p: 3 }}>
+                <Paper elevation={2} sx={{p: 3}}>
                     <Stack spacing={4}>
                         <Box
                             display="flex"
@@ -57,7 +73,7 @@ const Settings = () => {
                         >
                             <Avatar
                                 alt="default profile pic" src={avatar}
-                                sx={{ width: 80, height: 80 }}
+                                sx={{width: 80, height: 80}}
                             />
                         </Box>
 
