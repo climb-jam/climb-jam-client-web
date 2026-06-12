@@ -87,7 +87,7 @@ const AscentForm = () => {
                         <FormControlLabel value="flash" control={<Radio {...register("style", {required: "Style obligatoire"})} />} label="Flash"/>
                         <FormControlLabel value="onSight" control={<Radio{...register("style", {required: "Style obligatoire"})}/>} label="À vue"/>
                         <FormControlLabel value="notMasteredYet" control={<Radio{...register("style", {required: "Style obligatoire"})}/>}
-                                          label="Pas encore maîtriser"/>
+                                          label="Pas encore maîtrisée"/>
 
                     </RadioGroup>
                     {errors.style && <FormHelperText>
