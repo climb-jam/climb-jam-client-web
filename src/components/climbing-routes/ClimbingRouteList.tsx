@@ -3,12 +3,12 @@ import {useParams} from "react-router";
 import React, {useEffect, useState} from "react";
 import type {Route} from "../../@types/route.type.ts";
 import {fetchRoutesByCragId} from "../../api/route-api.ts";
-import RouteCard from "./RouteCard.tsx";
+import ClimbingRouteCard from "./ClimbingRouteCard.tsx";
 
 import Stack from "@mui/material/Stack";
 import {Box} from '@mui/joy';
 
-const RouteList = () => {
+const ClimbingRouteList = () => {
     const {id} = useParams();
     const [routes, setRoutes] = useState<Route[]>([])
 
@@ -32,8 +32,8 @@ const RouteList = () => {
             <Stack spacing={2}>
                 {routes.map((routes: Route) => {
                     return (
-                        <RouteCard routes={routes} key={routes.id} expanded={expanded}
-                                   handleChange={handleChange}/>
+                        <ClimbingRouteCard routes={routes} key={routes.id} expanded={expanded}
+                                           handleChange={handleChange}/>
                     )
                 })}
             </Stack>
@@ -41,4 +41,4 @@ const RouteList = () => {
     );
 };
 
-export default RouteList;
+export default ClimbingRouteList;

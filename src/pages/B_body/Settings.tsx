@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {Avatar, Box, Button, Container, Paper, Stack, Typography} from "@mui/material";
 import {useThemeContext} from "../../context/ThemeContext";
 import avatar from "../../assets/climberPic.webp"
-import {deleteMyAccount} from "../../api/userApi.ts";
+import {deleteMyAccount} from "../../api/user-api.ts";
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

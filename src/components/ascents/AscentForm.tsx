@@ -18,9 +18,9 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import Stack from "@mui/material/Stack";
-import RouteDetailsCard from "../routes/RouteDetailsCard.tsx";
+import ClimbingRouteDetailsCard from "../climbing-routes/ClimbingRouteDetailsCard.tsx";
 import BackNav from "../../pages/A_nav/BackNav.tsx";
-import {fetchPostAscent} from "../../api/ascentApi.ts";
+import {fetchPostAscent} from "../../api/ascent-api.ts";
 import type {PickerValue} from "@mui/x-date-pickers/internals";
 
 import dayjs from "dayjs";
@@ -72,7 +72,7 @@ const AscentForm = () => {
         <>
             <BackNav backNavText={"Le spot"}/>
             <Box mt={"38px"} mb={"60px"}>
-            <RouteDetailsCard routes={routes}/>
+            <ClimbingRouteDetailsCard routes={routes}/>
             <form onSubmit={handleSubmit(onSubmit)} style={{paddingTop:'10px',marginBottom:'40px'}}>
                 <Stack textAlign={"left"} justifyContent={"flex-start"} justifyItems={"flex-start"} direction="column"
                        spacing={2}>

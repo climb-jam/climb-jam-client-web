@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import RouteList from "../routes/RouteList.tsx";
+import ClimbingRouteList from "../climbing-routes/ClimbingRouteList.tsx";
 import CragDetails from "./CragDetails.tsx";
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
@@ -93,7 +93,7 @@ const CragTab = () => {
             </Tabs>
             {/* Contenu des onglets */}
             {value === 0 && <CragDetails cragProps={crag} />}
-            {value === 1 && <RouteList/>}
+            {value === 1 && <ClimbingRouteList/>}
         </Box>
     );
 };

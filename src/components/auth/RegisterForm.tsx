@@ -13,13 +13,14 @@ type RegisterFormInputs = {
     email: string;
     password: string;
     username: string;
+    termsAccepted: boolean;
 };
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-const validation = Yup.object().shape({
+const validation: Yup.ObjectSchema<RegisterFormInputs> = Yup.object({
     email: Yup.string().required("L'email est obligatoire")
-        .matches(emailRegex,"Email invalide"),
+        .matches(emailRegex, "Email invalide"),
     password: Yup.string().required("Le mot de passe est obligatoire")
         .min(12, "Minimum 12 caractères")
         .matches(/[@$!%*#?&]/, "Le mot de passe doit contenir un symbole: @$!%*#?&")
@@ -29,6 +30,9 @@ const validation = Yup.object().shape({
     username: Yup.string()
         .required("Le nom d'utilisateur est obligatoire")
         .min(3, "Minimum 3 caractères"),
+    termsAccepted: Yup.boolean()
+        .required()
+        .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
 });
 
 const RegisterForm = () => {
@@ -41,13 +45,16 @@ const RegisterForm = () => {
     } = useForm<RegisterFormInputs>({
         resolver: yupResolver(validation),
         mode: "onChange",
+        defaultValues: {
+            termsAccepted: false,
+        },
     });
 
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleRegister = (form: RegisterFormInputs) => {
-        registerUser(form.email, form.password, form.username);
+        registerUser(form.email, form.password, form.username, form.termsAccepted);
     };
 
     return (
@@ -124,7 +131,38 @@ const RegisterForm = () => {
                                     <p className="error-message">{errors.username.message}</p>
                                 )}
                             </div>
+                            {/* Terms */}
+                            <div className="form-group">
+                                <label
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "8px",
+                                        fontSize: "0.9rem",
+                                    }}
+                                >
+                                    <input className="terms-checkbox"
+                                           type="checkbox"
+                                           {...register("termsAccepted")} />
 
+                                    <span>
+                                        J'accepte les{" "}
+                                        <a
+                                            href="/terms"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                           conditions d'utilisation
+                                         </a>
+                                    </span>
+
+                                </label>
+                                {errors.termsAccepted && (
+                                    <p className="error-message">
+                                        {errors.termsAccepted.message}
+                                    </p>
+                                )}
+                            </div>
                             {/* Button */}
                             <button
                                 type="submit"

@@ -18,7 +18,7 @@ import type {Crag} from "../../@types/crag.type.ts";
 import {
     deleteFavoriteCrag,
     getMyFavoriteCrags
-} from "../../api/favoriteCrag.ts";
+} from "../../api/favorite-crag-api.ts";
 
 import montainCardThumbnail from "../../assets/mountain_card.webp";
 import FavoriteIcon from "@mui/icons-material/Favorite";

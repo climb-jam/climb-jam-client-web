@@ -16,9 +16,10 @@ import Landing from "../pages/B_body/Landing.tsx";
 import Register from "../pages/B_body/Register.tsx";
 import Login from "../pages/B_body/Login.tsx";
 import CragTab from "../components/crags/CragTab.tsx";
-import RouteList from "../components/routes/RouteList.tsx";
+import ClimbingRouteList from "../components/climbing-routes/ClimbingRouteList.tsx";
 import AscentForm from "../components/ascents/AscentForm.tsx";
 import {useEffect, useState} from "react";
+import Terms from "../pages/B_body/Terms.tsx";
 
 const Router = () => {
     const { isLoggedIn } = AuthContext();
@@ -42,13 +43,14 @@ const Router = () => {
                         <Route path="/stats" element={<Stats/>}/>
                         <Route path="/crags" element={<CragList/>}/>
                         <Route path="/crags/:id" element={<CragTab/>}/>
-                        <Route path="/crags/:id/routes" element={<RouteList/>}/>
+                        <Route path="/crags/:id/routes" element={<ClimbingRouteList/>}/>
                         <Route path="/crags/:id/routes/:idRoute" element={<AscentForm/>}/>
                         <Route path="*" element={<Error/>}/>
                     </Route>
-                    ) : (
+                ) : (
                     <Route path="/" element={<LayoutWithoutNav/>}>
                         <Route path="/" element={<Landing/>}/>
+                        <Route path="/terms" element={<Terms/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="*" element={<Navigate to="/"/>}/>

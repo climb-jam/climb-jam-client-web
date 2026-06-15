@@ -1,14 +1,14 @@
 import React, {createContext, useEffect, useState} from 'react';
 import type {User} from "../@types/user.type.ts";
 import {useNavigate} from "react-router";
-import {getProfileAPI, loginAPI, registerAPI} from "../api/authService.ts";
+import {getProfileAPI, loginAPI, registerAPI} from "../api/auth-api.ts";
 import {toast} from "react-toastify";
 import axios from "axios";
 
 type UserContextType = {
     user: User | null;
     token: string | null;
-    registerUser: (email: string, password: string, username: string) => void;
+    registerUser: (email: string, password: string, username: string, termsAccepted: boolean) => void;
     loginUser: (email: string, password: string) => void;
     logout: () => void;
     isLoggedIn: () => boolean;
@@ -37,9 +37,9 @@ export const UserProvider = ({ children }: Props) => {
         setIsReady(true);
     }, []);
 
-    const registerUser = async (email: string, password: string, username: string) => {
+    const registerUser = async (email: string, password: string, username: string, termsAccepted: boolean) => {
         try {
-            const res = await registerAPI(email, password, username);
+            const res = await registerAPI(email, password, username, termsAccepted);
 
             if (res) {
                 toast.success("Inscription réussie ! Connecte-toi maintenant.");

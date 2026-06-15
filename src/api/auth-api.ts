@@ -5,12 +5,13 @@ import type {UserProfileToken} from "../@types/user.type.ts";
 const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 console.log("base url", BASE_API_URL);
 
-export const registerAPI = async (email: string, password: string, username: string) => {
+export const registerAPI = async (email: string, password: string, username: string, termsAccepted: boolean) => {
     try {
         const data = await axios.post<UserProfileToken>(BASE_API_URL+ "/auth/register", {
             email: email,
             password: password,
             username: username,
+            termsAccepted: termsAccepted
         });
         return data
     } catch (error) {

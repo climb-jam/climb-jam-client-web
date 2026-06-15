@@ -8,7 +8,7 @@ type routeProps = {
     routes: Route;
 }
 
-const RouteDetailsCard = ({routes}: routeProps) => {
+const ClimbingRouteDetailsCard = ({routes}: routeProps) => {
     const [border, setBorder] = useState<string>("2px solid red");
 
     useEffect(() => {
@@ -40,4 +40,4 @@ const RouteDetailsCard = ({routes}: routeProps) => {
     );
 };
 
-export default RouteDetailsCard;
+export default ClimbingRouteDetailsCard;

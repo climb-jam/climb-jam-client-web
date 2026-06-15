@@ -6,7 +6,7 @@ type ItemProps = {
     border: string
 }
 
-const RouteItem = ({routes, border}: ItemProps) => {
+const ClimbingRouteItem = ({routes, border}: ItemProps) => {
 
     const styles: CSSProperties = {
         height: "48px",
@@ -21,4 +21,4 @@ const RouteItem = ({routes, border}: ItemProps) => {
     );
 
 };
-export default RouteItem;
+export default ClimbingRouteItem;

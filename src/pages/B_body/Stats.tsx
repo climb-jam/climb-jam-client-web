@@ -7,7 +7,7 @@ import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearS
 import AscentsByClimbingTypeChart from "../../components/stats/AscentsByClimbingTypeChart.tsx";
 import AscentsByGradeChart from "../../components/stats/AscentsByGradeChart.tsx";
 import AscentsByMonthChart from "../../components/stats/AscentsByMonthChart.tsx";
-import {fetchMyStats} from "../../api/userStats.ts";
+import {fetchMyStats} from "../../api/user-stats-api.ts";
 import {useNavigate} from "react-router";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);

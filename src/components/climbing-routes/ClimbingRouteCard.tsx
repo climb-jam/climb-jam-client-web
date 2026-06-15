@@ -12,9 +12,9 @@ import Typography from '@mui/material/Typography';
 import type {Route} from "../../@types/route.type.ts";
 import {useNavigate} from "react-router";
 import {handleBorder} from "./handleBorder.ts";
-import RouteItem from "./RouteItem.tsx";
+import ClimbingRouteItem from "./ClimbingRouteItem.tsx";
 import {AccordionActions} from "@mui/material";
-import RouteDetailsCard from "./RouteDetailsCard.tsx";
+import ClimbingRouteDetailsCard from "./ClimbingRouteDetailsCard.tsx";
 import Stack from "@mui/material/Stack";
 
 type routeProps = {
@@ -61,7 +61,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-const RouteCard = ({routes, expanded, handleChange}: routeProps) => {
+const ClimbingRouteCard = ({routes, expanded, handleChange}: routeProps) => {
 
     const [border, setBorder] = useState<string>("2px solid red");
     const navigate = useNavigate();
@@ -87,13 +87,13 @@ const RouteCard = ({routes, expanded, handleChange}: routeProps) => {
             <Accordion expanded={expanded === "panel"+routes.id} onChange={handleChange("panel"+routes.id)}>
                 <AccordionSummary sx={boxStyle} aria-controls={"panel"+routes.id +"d-content"} id={"panel"+ routes.id+"d-header"}>
                     <Stack flexDirection={"row"} >
-                        <RouteItem routes={routes.grade} border={border}/>
+                        <ClimbingRouteItem routes={routes.grade} border={border}/>
                         <Typography sx={typoStyle}>{routes.name} {routes.climbingTypes}</Typography>
                     </Stack>
                 </AccordionSummary>
                 <AccordionDetails>
 
-                        <RouteDetailsCard routes={routes}/>
+                        <ClimbingRouteDetailsCard routes={routes}/>
 
                 </AccordionDetails>
                 <AccordionActions sx={{paddingTop: 0}}>
@@ -105,5 +105,5 @@ const RouteCard = ({routes, expanded, handleChange}: routeProps) => {
     );
 }
 
-export default RouteCard;
+export default ClimbingRouteCard;
 

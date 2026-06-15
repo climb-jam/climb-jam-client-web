@@ -2,7 +2,7 @@ import Pages from "../../components/layout/Pages";
 import {CircularProgress, Container, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import type {User} from "../../@types/user.type.ts";
-import {fetchAllUsersRoleUser} from "../../api/userApi.ts";
+import {fetchAllUsersRoleUser} from "../../api/user-api.ts";
 import ClimberList from "../../components/social/ClimberList.tsx";
 
 const Social = () => {

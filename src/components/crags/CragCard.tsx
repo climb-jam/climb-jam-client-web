@@ -20,7 +20,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
     addFavoriteCrag,
     deleteFavoriteCrag
-} from "../../api/favoriteCrag.ts";
+} from "../../api/favorite-crag-api.ts";
 
 type CragCardProps = {
     crag: Crag;
