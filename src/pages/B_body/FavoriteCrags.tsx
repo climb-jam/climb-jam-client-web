@@ -1,27 +1,15 @@
 import Pages from "../../components/layout/Pages";
-import {
-    Avatar,
-    Box,
-    CircularProgress,
-    Container,
-    IconButton,
-    Paper,
-    Typography
-} from "@mui/material";
+import {Avatar, Box, CircularProgress, Container, IconButton, Paper, Typography} from "@mui/material";
 
 import Stack from "@mui/material/Stack";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
-
-import type {Crag} from "../../@types/crag.type.ts";
-import {
-    deleteFavoriteCrag,
-    getMyFavoriteCrags
-} from "../../api/favorite-crag-api.ts";
+import {deleteFavoriteCrag, getMyFavoriteCrags} from "../../api/favorite-crag-api.ts";
 
 import montainCardThumbnail from "../../assets/mountain_card.webp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import type {Crag} from "../../@types/crag.type.ts";
 
 const FavoriteCrags = () => {
 
@@ -51,7 +39,7 @@ const FavoriteCrags = () => {
             await deleteFavoriteCrag(cragId);
 
             setFavorites(prev =>
-                prev.filter(crag => crag.id !== cragId)
+                prev.filter(favorite => favorite.id !== cragId)
             );
         } catch (error) {
             console.error("Erreur lors de la suppression du favori", error);
@@ -76,13 +64,14 @@ const FavoriteCrags = () => {
                 ) : (
                     <Stack spacing={2}>
 
-                        {favorites.map((crag) => (
+                        {favorites.map((favorite) => (
                             <Paper
-                                key={crag.id}
+                                key={favorite.id}
                                 elevation={2}
                                 sx={{
                                     display: "flex",
                                     alignItems: "center",
+                                    justifyContent: "space-between",
                                     p: 2,
                                     gap: 2,
                                     "&:hover": {
@@ -92,11 +81,11 @@ const FavoriteCrags = () => {
                                     },
                                 }}
                             >
-
                                 <Box
                                     display="flex"
                                     alignItems="center"
-                                    onClick={() => navigate(`/crags/${crag.id}`)}
+                                    flex={1}
+                                    onClick={() => navigate(`/crags/${favorite.id}`)}
                                 >
                                     <Avatar
                                         variant="rounded"
@@ -107,32 +96,30 @@ const FavoriteCrags = () => {
                                     <Box
                                         display="flex"
                                         flexDirection="column"
-                                        justifyContent="flex-start"
                                         textAlign="left"
                                         ml={2}
                                     >
                                         <Typography variant="body2" fontWeight={600}>
-                                            {crag.name}
+                                            {favorite.name}
                                         </Typography>
 
                                         <Typography variant="body2" color="text.secondary">
-                                            {crag.city}
+                                            {favorite.city}
                                         </Typography>
 
                                         <Typography variant="caption" color="text.secondary">
-                                            Altitude : {crag.altitude} m
+                                            Altitude : {favorite.altitude} m
                                         </Typography>
                                     </Box>
                                 </Box>
 
                                 <IconButton
-                                    onClick={() => handleRemoveFavorite(crag.id)}
+                                    onClick={() => handleRemoveFavorite(favorite.id)}
                                     aria-label="Retirer des favoris"
                                     sx={{color: "red"}}
                                 >
                                     <FavoriteIcon/>
                                 </IconButton>
-
                             </Paper>
                         ))}
 

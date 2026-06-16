@@ -34,9 +34,17 @@ const CragList = () => {
         }
     })
     return (
-        <div style={{ display:"flex" ,margin: "0 auto", width: "100%", flexWrap: "wrap",alignContent: "center",justifyContent:"center" ,marginTop:"38px"}}>
+        <div style={{
+            display: "flex",
+            margin: "0 auto",
+            width: "100%",
+            flexWrap: "wrap",
+            alignContent: "center",
+            justifyContent: "center",
+            marginTop: "38px"
+        }}>
             <BackNav backNavText={"Carte"}/>
-            <div style={{ width: "100%",marginBottom: "10px" }}>
+            <div style={{width: "100%", marginBottom: "10px"}}>
                 <TextField
                     id="outlined-basic"
                     onChange={inputHandler}
@@ -49,7 +57,7 @@ const CragList = () => {
             {filteredCrags.map((crag: Crag) => {
                 return (
 
-                        <CragCard crag={crag} key={crag.id}/>
+                    <CragCard crag={crag} key={crag.id}/>
 
                 )
             })}

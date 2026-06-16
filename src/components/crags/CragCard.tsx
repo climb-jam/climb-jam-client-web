@@ -12,14 +12,15 @@ import {
     CardContent,
     CardMedia,
     IconButton,
-    Typography
+    Typography,
 } from "@mui/material";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import {
     addFavoriteCrag,
-    deleteFavoriteCrag
+    deleteFavoriteCrag,
+    getMyFavoriteCrags,
 } from "../../api/favorite-crag-api.ts";
 
 type CragCardProps = {
@@ -29,20 +30,34 @@ type CragCardProps = {
 const CragCard: React.FC<CragCardProps> = ({crag}) => {
     const navigate = useNavigate();
 
-    const [isFav, setIsFav] = useState(crag.isFav);
+    const [isFav, setIsFav] = useState(false);
 
     useEffect(() => {
-        setIsFav(crag.isFav);
-    }, [crag.isFav]);
+        const loadFavoriteStatus = async () => {
+            try {
+                const favorites = await getMyFavoriteCrags();
+
+                const favorite = favorites.some(
+                    (fav) => fav.id === crag.id
+                );
+
+                setIsFav(favorite);
+            } catch (error) {
+                console.error("Erreur chargement favoris :", error);
+            }
+        };
+
+        loadFavoriteStatus();
+    }, [crag.id]);
 
     const handleFavoriteClick = async () => {
         try {
-            if (!isFav) {
-                await addFavoriteCrag(crag.id);
-                setIsFav(true);
-            } else {
+            if (isFav) {
                 await deleteFavoriteCrag(crag.id);
                 setIsFav(false);
+            } else {
+                await addFavoriteCrag(crag.id);
+                setIsFav(true);
             }
         } catch (error) {
             console.error("Erreur favoris :", error);
@@ -60,15 +75,15 @@ const CragCard: React.FC<CragCardProps> = ({crag}) => {
                 />
 
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5">
                         {crag.name}
                     </Typography>
 
-                    <Typography variant="body2" sx={{color: "text.secondary"}}>
+                    <Typography variant="body2" color="text.secondary">
                         {crag.city}, {crag.postalCode}
                     </Typography>
 
-                    <Typography variant="body2" sx={{color: "text.secondary"}}>
+                    <Typography variant="body2" color="text.secondary">
                         {crag.minGrade} à {crag.maxGrade}
                     </Typography>
                 </CardContent>
@@ -76,7 +91,7 @@ const CragCard: React.FC<CragCardProps> = ({crag}) => {
 
             <CardActions sx={{display: "flex", flexDirection: "row-reverse"}}>
                 <IconButton
-                    aria-label="add to favorites"
+                    aria-label="favori"
                     onClick={(e) => {
                         e.stopPropagation();
                         handleFavoriteClick();
