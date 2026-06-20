@@ -23,3 +23,19 @@ export const fetchCragById = async (id: string): Promise<Crag> => {
         return {} as Crag;
     }
 }
+
+export const searchCragsByName = async (
+    name: string,
+    page: number,
+    size: number
+) => {
+    const response = await api.get("/crags/search", {
+        params: {
+            name,
+            page,
+            size
+        }
+    });
+
+    return response.data;
+};
